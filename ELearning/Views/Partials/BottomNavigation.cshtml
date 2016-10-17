@@ -3,48 +3,27 @@
     var home = CurrentPage.Site();
 }
 
-@if (home.Children.Where("Visible").Any())
-{
-    @* For each child page under the home node, where the property umbracoNaviHide is not True *@
-    foreach (var childPage in home.Children.Where("Visible"))
-    {   
-        <div class="col-xs-6 col-sm-3">
-            @if (childPage.Children.Where("Visible").Any())
-            {                    
-                <strong>@childPage.Name</strong>
-                @childPages(childPage.Children)
-            }
+<footer id="page-footer" class="container-fluid">
+    <div class="row-fluid">
+        <aside id="block-region-footer-left" class="span4 block-region" data-blockregion="footer-left" data-droptarget="1"></aside>
+        <aside id="block-region-footer-middle" class="span4 block-region" data-blockregion="footer-middle" data-droptarget="1"></aside>
+        <aside id="block-region-footer-right" class="span4 block-region" data-blockregion="footer-right" data-droptarget="1"></aside>
+    </div>
+    <div class="footerlinks">
+        <div class="row-fluid">
+            <p class="helplink"></p>
         </div>
-    }
-}
-
-<div class="col-xs-6 col-sm-3">
-    <strong>Find us</strong>
-    <ul>
-        <li>
-            <a href="https://twitter.com/umbracoproject" target="_blank">Twitter</a>
-        </li>
-        <li>
-            <a href="https://www.facebook.com/Umbraco" target="_blank">Facebook</a>
-        </li>
-        <li>
-            <a href="http://umbraco.com/?utm_source=core&utm_medium=starterkit&utm_content=topic-link&utm_campaign=fanoe" target="_blank">Umbraco.com</a>
-        </li>
-    </ul>
-</div>
-
-@helper childPages(dynamic pages)
-{
-    @* Ensure that we have a collection of pages *@
-    if (pages.Any())
-    {
-        <ul>
-            @foreach (var page in pages.Where("Visible"))
-            {
-                <li>
-                    <a href="@page.Url">@page.Name</a>
-                </li>
-            }
-        </ul>
-    }
-}
+        <div class="socials row-fluid">
+            <div class="span6">
+                <div class="social_contact">
+                    <i class="fa fa-bookmark-o"></i> &nbsp;<a href='/' target="_blank" class="social_contact_web">http:localhost:313</a>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="social_icons pull-right">
+                    <a class="social fa fa-facebook" href='https://www.facebook.com/elearningHWR' target='_blank'> </a> <a class="social fa fa-twitter" href='https://twitter.com/erlerner' target='_blank'> </a> <a class="social fa fa-youtube" href='https://www.youtube.com/channel/UCnzp5ybpuK1PgRm4ny8zWbA' target='_blank'> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

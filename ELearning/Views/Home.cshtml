@@ -3,4 +3,31 @@
     Layout = "Master.cshtml";
 }
 
-@CurrentPage.GetGridHtml("content", "fanoe")
+@*@CurrentPage.GetGridHtml("content", "fanoe")*@
+
+
+
+<div id="page" class="container-fluid">
+    <div id="page-content" class="row-fluid">
+        <div id="region-bs-main-and-pre" class="span9">
+            <div class="row-fluid">
+                <section id="region-main" class="span8 pull-right">
+                    <div class="carousel">
+                        <h3 class="bx-heading">
+                            @CurrentPage._siteTitle
+                        </h3>
+                        <p>
+                            @Html.Raw(CurrentPage._siteDescription)
+                        </p>
+                    </div>
+                </section>
+                @{ Html.RenderPartial("LeftNavigation"); }
+            </div>
+        </div>
+        @{ Html.RenderPartial("ITNews"); }
+    </div>
+    <a class="back-to-top">
+        <i class="fa fa-chevron-circle-up fa-3x"></i>
+        <p></p>
+    </a>
+</div>

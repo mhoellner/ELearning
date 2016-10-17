@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Formular>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div id="page" class="container-fluid">
+    <div id="page-content" class="row-fluid">
+        <div id="region-bs-main-and-pre" class="span9">
+            <div class="row-fluid">
+                <section id="region-main" class="span8 pull-right">
+                    <div class="carousel">
+                        <h3>@CurrentPage.Name</h3>
+                        <p>@CurrentPage._einleitung</p>
+                        <form>
+                            <fieldset>
+                                <legend>
+                                    Was ist die einzige richtige Antwort?
+                                </legend>
+                                <p>
+                                    <input type="radio" name="ersteFrage" value="true"/> Richtige Antwort
+                                </p>
+                                <p>
+                                    <input type="radio" name="ersteFrage" value="false"/> Falsche Antwort
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend>
+                                    Was sind die richtigen Antworten?
+                                </legend>
+                                <p>
+                                    <input type="checkbox" name="zweiteFrage" value="true"/> Richtige Antwort
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="zweiteFrage" value="true"/> Richtige Antwort
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="zweiteFrage" value="false"/> Falsche Antwort
+                                </p>
+                            </fieldset>
+                            <p>
+                                <input type="submit" name="submit"/>
+                            </p>
+                        </form>
+                    </div>
+                </section>
+                @{ Html.RenderPartial("LeftNavigation"); }
+            </div>
+        </div>
+        @{ Html.RenderPartial("ITNews"); }
+    </div>
+    <a class="back-to-top">
+        <i class="fa fa-chevron-circle-up fa-3x"></i>
+        <p></p>
+    </a>
+</div>

@@ -1,61 +1,57 @@
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{ var home = CurrentPage.Site(); }
 
-@if (home.Children.Any())
-{
-    @* Get the first page in the children *@
-    var naviLevel = home.Children.First().Level;
-    
-    @* Add in level for a CSS hook *@
-    <ul class="level-@naviLevel">            
-        @* For each child page under the home node *@
-        @foreach (var childPage in home.Children)
-        {   
-            if (childPage.Children.Any())
-            {                    
-                <li class="has-child @(childPage.IsAncestorOrSelf(CurrentPage) ? "selected" : null)">
-					@if(childPage.DocumentTypeAlias == "LandingPage") 
-					{
-                    	<span>@childPage.Name</span>
-						@childPages(childPage.Children)
-					} else {
-						<a href="@childPage.Url">@childPage.Name</a>
-					}
-                </li>
-            } 
-			else
-            {
-                <li class="@(childPage.IsAncestorOrSelf(CurrentPage) ? "selected" : null)">
-                    <a href="@childPage.Url">@childPage.Name</a>
-                </li>
-            }            
-        }
-    </ul>
-}
-
-@helper childPages(dynamic pages)
-{
-    @* Ensure that we have a collection of pages *@
-    if (pages.Any())
-    {
-        @* Get the first page in pages and get the level *@
-        var naviLevel = pages.First().Level;
-        
-        @* Add in level for a CSS hook *@
-        <ul class="sublevel level-@(naviLevel)">
-            @foreach (var page in pages)
-            {
-                <li>
-                    <a href="@page.Url">@page.Name</a>
-                    
-                    @* if the current page has any children *@
-                    @if (page.Children.Any())
-                    {                        
-                        @* Call our helper to display the children *@
-                        @childPages(page.Children)
-                    }
-                </li>
-            }
-        </ul>
-    }
-}
+<header id="page-header" class="clearfix">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <!-- HEADER: LOGO AREA -->
+            <div class="logo-header">
+                <a class="logo" href="/" title="Startseite">
+                    <img src="@CurrentPage._siteLogo" class="logo" alt="logo" />
+                </a>
+            </div>
+            <div class="login-header">
+                <div class="profileblock">
+                    <form class="navbar-form pull-right" method="post" action="https://moodle.hwr-berlin.de/login/index.php?authldap_skipntlmsso=1">
+                        <div id="block-login">
+                            <label id="user">
+                                <i class="fa fa-user"></i>
+                            </label>
+                            <input id="inputName" class="span2" type="text" name="username" placeholder="Anmeldename" style="margin-bottom:10px;">
+                            <label id="pass">
+                                <i class="fa fa-key"></i>
+                            </label>
+                            <input id="inputPassword" class="span2" type="password" name="password" placeholder="Kennwort">
+                            <input type="submit" id="submit" name="submit" value="" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<header role="banner" class="navbar">
+    <nav role="navigation" class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="/">
+                E-Learning@HWR
+            </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse collapse">
+                <div class="nav-divider-right"></div>
+                <ul class="nav pull-right">
+                    <li></li>
+                </ul>
+                <form id="search" action="http://moodle.hwr-berlin.de/course/search.php" method="GET">
+                    <div class="nav-divider-left"></div>
+                    <input id="coursesearchbox" type="text" onFocus="if(this.value === 'Kurse suchen' ) this.value='';" onBlur="if(this.value === '') this.value='Kurse suchen';" value="Kurse suchen" name="search">
+                    <input type="submit" value="">
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
