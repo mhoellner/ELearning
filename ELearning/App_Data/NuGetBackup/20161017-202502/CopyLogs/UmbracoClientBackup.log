@@ -1,0 +1,26 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robustes Dateikopieren fÅr Windows                              
+-------------------------------------------------------------------------------
+
+  Gestartet: Montag, 17. Oktober 2016 20:25:06
+   Quelle : V:\Projects\University\SWE\ELearning\ELearning\Umbraco_Client\
+     Ziel : V:\Projects\University\SWE\ELearning\ELearning\App_Data\NuGetBackup\20161017-202502\Umbraco_Client\
+
+    Dateien : *.*
+	    
+  Optionen: *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	V:\Projects\University\SWE\ELearning\ELearning\Umbraco_Client\
+
+------------------------------------------------------------------------------
+
+           Insgesamt   KopiertöbersprungenKeine öbereinstimmung    FEHLER    Extras
+Verzeich.:         1         0         1         0         0         0
+  Dateien:         0         0         0         0         0         0
+    Bytes:         0         0         0         0         0         0
+   Zeiten:   0:00:00   0:00:00                       0:00:00   0:00:00
+   Beendet: Montag, 17. Oktober 2016 20:25:06
+
