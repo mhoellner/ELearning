@@ -1,31 +1,15 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Overview>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
 	Layout = "Master.cshtml";
 }
-
-<div id="page" class="container-fluid">
-    <div id="page-content" class="row-fluid">
-        <div id="region-bs-main-and-pre" class="span9">
-            <div class="row-fluid">
-                <section id="region-main" class="span8 pull-right">
-                    <div class="carousel">
-                        <h3>@CurrentPage.Name</h3>
-                        <ul>
-                        @foreach (var item in CurrentPage.Children)
-                        {
-                            <li><a href="@item.Url">@item.Name</a></li>
-                        }
-                        </ul>
-                    </div>
-                </section>
-                @{ Html.RenderPartial("LeftNavigation"); }
-            </div>
-        </div>
-        @{ Html.RenderPartial("ITNews"); }
-    </div>
-    <a class="back-to-top">
-        <i class="fa fa-chevron-circle-up fa-3x"></i>
-        <p></p>
-    </a>
-</div>
+<h3>@CurrentPage.Name</h3>
+@{
+    var children = Model.Content.Children.OrderBy(t => t.Name);
+}
+@foreach (var child in children)
+{
+    <h5>
+        <a href="@child.Url">@child.Name</a>
+    </h5>
+}

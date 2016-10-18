@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "72e041aee21debe5")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "df17e77f3820fe0f")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -355,6 +355,50 @@ namespace Umbraco.Web.PublishedContentModels
 		public IHtmlString Einleitung
 		{
 			get { return this.GetPropertyValue<IHtmlString>("einleitung"); }
+		}
+	}
+
+	/// <summary>Profile</summary>
+	[PublishedContentModel("profile")]
+	public partial class Profile : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "profile";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Profile(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Profile, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// ProfileDescription
+		///</summary>
+		[ImplementPropertyType("profileDescription")]
+		public IHtmlString ProfileDescription
+		{
+			get { return this.GetPropertyValue<IHtmlString>("profileDescription"); }
+		}
+
+		///<summary>
+		/// ProfilePic
+		///</summary>
+		[ImplementPropertyType("profilePic")]
+		public string ProfilePic
+		{
+			get { return this.GetPropertyValue<string>("profilePic"); }
 		}
 	}
 
