@@ -345,6 +345,9 @@
     <Content Include="Views\Formular.cshtml" />
     <Content Include="Views\Overview.cshtml" />
     <Content Include="Views\Profile.cshtml" />
+    <Content Include="Views\Modul.cshtml" />
+    <Content Include="Views\MultipleChoiceQuestion.cshtml" />
+    <Content Include="Views\SingleChoiceQuestion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
