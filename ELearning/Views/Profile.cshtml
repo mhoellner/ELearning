@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Globalization
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 
     if (CurrentPage._profilePic != null)
     {
@@ -12,10 +12,14 @@
 <p>
     <br/>
     <b>Meine Profilinformationen:</b>
-    <br/><br/>
+</p>
+<p>
     Beigetreten am @Model.Content.CreateDate.ToString("dd. MMMM yyyy", new CultureInfo("de"))
-    <br/>
+</p>
+<p>
     @CurrentPage._profileDescription
-    <br/>
+</p>
+<br/>
+<p>
     Zuletzt geändert am @Model.Content.UpdateDate.ToString("dd. MMMM yyyy", new CultureInfo("de")) um @Model.Content.UpdateDate.ToString("HH:mm", new CultureInfo("de"))
 </p>

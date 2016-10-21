@@ -329,6 +329,22 @@
     <Content Include="Config\BaseRestExtensions.config" />
     <Content Include="Config\applications.config" />
     <Content Include="Config\404handlers.config" />
+    <Content Include="Views\BlogOverview.cshtml" />
+    <Content Include="Views\BlogPost.cshtml" />
+    <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Master.cshtml" />
+    <Content Include="Views\Partials\BottomNavigation.cshtml" />
+    <Content Include="Views\Partials\Grid\Fanoe.cshtml" />
+    <Content Include="Views\Partials\MainNavigation.cshtml" />
+    <Content Include="Views\TextPage.cshtml" />
+    <Content Include="Views\Partials\MainNavigation - Original.cshtml" />
+    <Content Include="Views\Partials\BottomNavigation - Original.cshtml" />
+    <Content Include="Views\Partials\ITNews.cshtml" />
+    <Content Include="Views\Partials\LeftNavigation.cshtml" />
+    <Content Include="Views\Video.cshtml" />
+    <Content Include="Views\Formular.cshtml" />
+    <Content Include="Views\Overview.cshtml" />
+    <Content Include="Views\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

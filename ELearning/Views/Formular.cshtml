@@ -1,37 +1,54 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits UmbracoTemplatePage
 @{
 	Layout = "Master.cshtml";
+    string[] fragen = CurrentPage._fragen.Split(',');
+    if (fragen.Length == 1 && fragen[0] == string.Empty)
+    {
+        fragen = new string[0];
+    }
 }
-<h3>@CurrentPage.Name</h3>
-<p>@CurrentPage._einleitung</p>
-<form>
-    <fieldset>
-        <legend>
-            Was ist die einzige richtige Antwort?
-        </legend>
+<h2>
+    @CurrentPage.Name
+</h2>
+<p>
+    @CurrentPage._einleitung
+</p>
+
+@if (fragen.Length > 0)
+{
+    <form>
+        @foreach (var frageId in fragen)
+        {
+            var frage = Umbraco.Content(frageId);
+            string[] antworten = frage._antwortmoeglichkeiten.Split('|');
+            if (antworten.Length == 1 && antworten[0] == string.Empty)
+            {
+                antworten = new string[0];
+            }
+            <fieldset>
+                <legend>
+                    @frage._frage
+                </legend>
+                @foreach (var antwort in antworten)
+                {
+                    if (frage.DocumentTypeId == 1122)
+                    {
+                        <p>
+                            <input type="radio" name="@frageId" value="true" /> @antwort
+                        </p>
+                    }
+                    else if (frage.DocumentTypeId == 1126)
+                    {
+                        <p>
+                            <input type="checkbox" name="zweiteFrage" value="true" /> @antwort
+                        </p>
+                    }
+                }
+            </fieldset>
+        }
+        <br/>
         <p>
-            <input type="radio" name="ersteFrage" value="true"/> Richtige Antwort
+            <a href="/auswertung-default" style="color: red">Fragebogen zur Korrektur geben</a>
         </p>
-        <p>
-            <input type="radio" name="ersteFrage" value="false"/> Falsche Antwort
-        </p>
-    </fieldset>
-    <fieldset>
-        <legend>
-            Was sind die richtigen Antworten?
-        </legend>
-        <p>
-            <input type="checkbox" name="zweiteFrage" value="true"/> Richtige Antwort
-        </p>
-        <p>
-            <input type="checkbox" name="zweiteFrage" value="true"/> Richtige Antwort
-        </p>
-        <p>
-            <input type="checkbox" name="zweiteFrage" value="false"/> Falsche Antwort
-        </p>
-    </fieldset>
-    <p>
-        <input type="submit" name="submit"/>
-    </p>
-</form>
+    </form>
+}

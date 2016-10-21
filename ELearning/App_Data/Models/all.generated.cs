@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "df17e77f3820fe0f")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "f92f382190591e07")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -372,6 +372,15 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<IHtmlString>("einleitung"); }
 		}
+
+		///<summary>
+		/// Fragen
+		///</summary>
+		[ImplementPropertyType("fragen")]
+		public string Fragen
+		{
+			get { return this.GetPropertyValue<string>("fragen"); }
+		}
 	}
 
 	/// <summary>Profile</summary>
@@ -415,6 +424,156 @@ namespace Umbraco.Web.PublishedContentModels
 		public string ProfilePic
 		{
 			get { return this.GetPropertyValue<string>("profilePic"); }
+		}
+	}
+
+	/// <summary>Modul</summary>
+	[PublishedContentModel("modul")]
+	public partial class Modul : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "modul";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Modul(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Modul, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Ansprechpartner
+		///</summary>
+		[ImplementPropertyType("ansprechpartner")]
+		public string Ansprechpartner
+		{
+			get { return this.GetPropertyValue<string>("ansprechpartner"); }
+		}
+
+		///<summary>
+		/// Description
+		///</summary>
+		[ImplementPropertyType("description")]
+		public IHtmlString Description
+		{
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
+		}
+
+		///<summary>
+		/// Zugehörige Lerninhalte
+		///</summary>
+		[ImplementPropertyType("zugehoerigeLerninhalte")]
+		public string ZugehoerigeLerninhalte
+		{
+			get { return this.GetPropertyValue<string>("zugehoerigeLerninhalte"); }
+		}
+
+		///<summary>
+		/// Zugehörige Wissenstests
+		///</summary>
+		[ImplementPropertyType("zugehoerigeWissenstests")]
+		public string ZugehoerigeWissenstests
+		{
+			get { return this.GetPropertyValue<string>("zugehoerigeWissenstests"); }
+		}
+	}
+
+	/// <summary>Single Choice Question</summary>
+	[PublishedContentModel("singleChoiceQuestion")]
+	public partial class SingleChoiceQuestion : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "singleChoiceQuestion";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public SingleChoiceQuestion(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<SingleChoiceQuestion, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Antwortmöglichkeiten: Antwortmöglichkeiten durch eine Pipe (|) trennen
+		///</summary>
+		[ImplementPropertyType("antwortmoeglichkeiten")]
+		public string Antwortmoeglichkeiten
+		{
+			get { return this.GetPropertyValue<string>("antwortmoeglichkeiten"); }
+		}
+
+		///<summary>
+		/// Frage
+		///</summary>
+		[ImplementPropertyType("frage")]
+		public IHtmlString Frage
+		{
+			get { return this.GetPropertyValue<IHtmlString>("frage"); }
+		}
+	}
+
+	/// <summary>Multiple Choice Question</summary>
+	[PublishedContentModel("multipleChoiceQuestion")]
+	public partial class MultipleChoiceQuestion : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "multipleChoiceQuestion";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public MultipleChoiceQuestion(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<MultipleChoiceQuestion, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Antwortmöglichkeiten: Antwortmöglihckeiten durch eine Pipe (|) trennen.
+		///</summary>
+		[ImplementPropertyType("antwortmoeglichkeiten")]
+		public string Antwortmoeglichkeiten
+		{
+			get { return this.GetPropertyValue<string>("antwortmoeglichkeiten"); }
+		}
+
+		///<summary>
+		/// Frage
+		///</summary>
+		[ImplementPropertyType("frage")]
+		public IHtmlString Frage
+		{
+			get { return this.GetPropertyValue<IHtmlString>("frage"); }
 		}
 	}
 

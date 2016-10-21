@@ -1,0 +1,108 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+    string[] videos = CurrentPage._zugehoerigeLerninhalte.Split(',');
+    if (videos.Length == 1 && videos[0] == string.Empty)
+    {
+        videos = new string[0];
+    }
+    string[] wissenstests = CurrentPage._zugehoerigeWissenstests.Split(',');
+    if (wissenstests.Length == 1 && wissenstests[0] == string.Empty)
+    {
+        wissenstests = new string[0];
+    }
+    string[] ansprechpartner = CurrentPage._ansprechpartner.Split(',');
+    if (ansprechpartner.Length == 1 && ansprechpartner[0] == string.Empty)
+    {
+        ansprechpartner = new string[0];
+    }
+}
+
+<h2>
+    @CurrentPage.Name
+</h2>
+<p>
+    @CurrentPage._description
+</p>
+@if (videos.Length > 0)
+{
+    <p>
+        <h3>
+            Zugehörige Lerninhalte (@videos.Length)
+        </h3>
+        <ul>
+            @{
+                foreach (var videoId in videos)
+                {
+                    var video = Umbraco.Content(videoId);
+                    <li>
+                        <a href="@video.Url">@video.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </p>
+}
+else
+{
+    <p>
+        <h3>
+            Derzeit sind keine Lerninhalte in diesem Modul hinterlegt.
+        </h3>
+    </p>
+}
+@if (wissenstests.Length > 0)
+{
+    <p>
+        <h3>
+            Zugehörige Wissenstests (@wissenstests.Length)
+        </h3>
+        <ul>
+            @{
+                foreach (var wissenstestId in wissenstests)
+                {
+                    var wissenstest = Umbraco.Content(wissenstestId);
+                    <li>
+                        <a href="@wissenstest.Url">@wissenstest.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </p>
+}
+else
+{
+    <p>
+        <h3>
+            Derzeit sind keine Wissenstest in diesem Modul hinterlegt.
+        </h3>
+    </p>
+}
+@if (ansprechpartner.Length > 0)
+{
+    <p>
+        <h3>
+            Ansprechpartner (@ansprechpartner.Length)
+        </h3>
+        <ul>
+            @{
+                foreach (var personId in ansprechpartner)
+                {
+                    var person = Umbraco.Content(personId);
+                    <li>
+                        <a href="@person.Url">@person.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </p>
+}
+else
+{
+    <p>
+        <h3>
+            Derzeit sind keine Ansprechpartner in diesem Modul hinterlegt.
+        </h3>
+    </p>
+}

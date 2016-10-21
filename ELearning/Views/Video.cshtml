@@ -14,10 +14,16 @@
     }
 }
 
-<h3>@CurrentPage.Name</h3>
-<p>@CurrentPage._textUeberVideo</p>
+<h2>
+    @CurrentPage.Name
+</h2>
+<p>
+    @CurrentPage._textUeberVideo
+</p>
 @if (!iFrameLink.IsNullOrWhiteSpace())
 {
     <iframe width="854" height="480" src="@iFrameLink" frameborder="0" allowfullscreen></iframe>
 }
-<p>@CurrentPage._textUnterVideo</p>
+<p>
+    @CurrentPage._textUnterVideo
+</p>
