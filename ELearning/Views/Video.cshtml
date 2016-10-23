@@ -22,7 +22,9 @@
 </p>
 @if (!iFrameLink.IsNullOrWhiteSpace())
 {
-    <iframe width="854" height="480" src="@iFrameLink" frameborder="0" allowfullscreen></iframe>
+    <div class="video-container">
+        <iframe src="@iFrameLink" frameborder="0" allowfullscreen></iframe>
+    </div>
 }
 <p>
     @CurrentPage._textUnterVideo
