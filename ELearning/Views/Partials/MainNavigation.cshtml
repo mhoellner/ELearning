@@ -1,4 +1,5 @@
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using UserExtensions = ELearning.Extensions.UserExtensions
+@inherits UmbracoTemplatePage
 @{ var home = CurrentPage.Site(); }
 
 <header id="page-header" class="clearfix">
@@ -30,6 +31,7 @@
             <a class="brand" href="/">
                 E-Learning@HWR
             </a>
+            @*Sie sind angemeldet als @UserExtensions.GetCurrentUserId() test*@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

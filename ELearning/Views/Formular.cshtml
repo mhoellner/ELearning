@@ -1,10 +1,11 @@
-﻿@inherits UmbracoTemplatePage
+﻿@using ELearning
+@inherits UmbracoTemplatePage
 @{
 	Layout = "Master.cshtml";
-    string[] fragen = CurrentPage._fragen.Split(',');
-    if (fragen.Length == 1 && fragen[0] == string.Empty)
+    string[] questions = CurrentPage._fragen.Split(',');
+    if (questions.Length == 1 && questions[0] == string.Empty)
     {
-        fragen = new string[0];
+        questions = new string[0];
     }
 }
 <h2>
@@ -14,34 +15,32 @@
     @CurrentPage._einleitung
 </p>
 
-@if (fragen.Length > 0)
+@if (questions.Length > 0)
 {
     <form>
-        @foreach (var frageId in fragen)
+        @foreach (var questionId in questions)
         {
-            var frage = Umbraco.Content(frageId);
-            string[] antworten = frage._antwortmoeglichkeiten.Split('|');
-            if (antworten.Length == 1 && antworten[0] == string.Empty)
-            {
-                antworten = new string[0];
-            }
+            var question = Umbraco.Content(questionId);
             <fieldset>
                 <legend>
-                    @frage._frage
+                    @question._frage
                 </legend>
-                @foreach (var antwort in antworten)
-                {
-                    if (frage.DocumentTypeId == 1122)
+                @{
+                    var answers = question.Children;
+                    foreach (var answer in answers)
                     {
-                        <p>
-                            <input type="radio" name="@frageId" value="true" /> @antwort
-                        </p>
-                    }
-                    else if (frage.DocumentTypeId == 1126)
-                    {
-                        <p>
-                            <input type="checkbox" name="zweiteFrage" value="true" /> @antwort
-                        </p>
+                        if (question.DocumentTypeId == Templates.SingleChoiceQuestionTemplate)
+                        {
+                            <p>
+                                <input type="radio" name="@questionId" value="@answer.Id" /> @answer._answer
+                            </p>
+                        }
+                        else if (question.DocumentTypeId == Templates.MultipleChoiceQuestionTemplate)
+                        {
+                            <p>
+                                <input type="checkbox" name="@questionId" value="@answer.Id" /> @answer._answer
+                            </p>
+                        }
                     }
                 }
             </fieldset>
