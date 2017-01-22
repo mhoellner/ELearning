@@ -4,4 +4,4 @@ this is the repository for our software project in our Software Engineering clas
 This is a customized [Umbraco](http://umbraco.com/) installation functioning as a prototype.<br>
 We are using the JavaScript and CSS-Styling from our Learning Management System [Moodle](http://moodle.hwr-berlin.de), so all credits to them.<br>
 Since it is a prototype, we probably won't fix a lot of bugs. It is just for having a general idea what our E-Learning platform could look like.<br>
-This is a project by Katja Holzinger, Maximilian Prohl and me, Milan Höllner.
+This is a project by Katja Holzinger([@missymond](https://github.com/missymond)), Maximilian Prohl([@prohli](https://github.com/prohli)) and me, Milan Höllner([@mhoellner](https://github.com/mhoellner)).
