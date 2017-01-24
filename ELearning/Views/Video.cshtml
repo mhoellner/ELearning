@@ -1,31 +1,15 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
 @{
     Layout = "Master.cshtml";
-
-    string iFrameLink = string.Empty;
-    string currentLink = CurrentPage._youtubeLink;
-    if (currentLink.Contains("youtube.com/watch?v="))
-    {
-        iFrameLink = "https://www.youtube.com/embed/" + currentLink.Substring(currentLink.FindIndex(t => t.Equals('=')) + 1, 11);
-    }
-    else if (currentLink.Contains("youtube.com/embed/"))
-    {
-        iFrameLink = currentLink;
-    }
+    var viewModel = Model.Content.As<ELearning.Models.Video>();
 }
 
 <h2>
-    @CurrentPage.Name
+    @viewModel.Name
 </h2>
-<p>
-    @CurrentPage._textUeberVideo
-</p>
-@if (!iFrameLink.IsNullOrWhiteSpace())
-{
-    <div class="video-container">
-        <iframe src="@iFrameLink" frameborder="0" allowfullscreen></iframe>
-    </div>
-}
-<p>
-    @CurrentPage._textUnterVideo
-</p>
+@viewModel.TextAbove
+
+@viewModel.YoutubeEmbedded
+
+@viewModel.TextBelow

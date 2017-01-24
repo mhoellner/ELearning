@@ -1,53 +1,45 @@
 ﻿@using ELearning
+@using ELearning.Models
+@using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 @{
-	Layout = "Master.cshtml";
-    string[] questions = CurrentPage._fragen.Split(',');
-    if (questions.Length == 1 && questions[0] == string.Empty)
-    {
-        questions = new string[0];
-    }
+    Layout = "Master.cshtml";
+    var viewModel = Model.Content.As<Form>();
 }
 <h2>
-    @CurrentPage.Name
+    @viewModel.Name
 </h2>
-<p>
-    @CurrentPage._einleitung
-</p>
-
-@if (questions.Length > 0)
+@viewModel.Introduction
+@if (viewModel.Questions.Any())
 {
     <form>
-        @foreach (var questionId in questions)
+        @foreach (var question in viewModel.Questions)
         {
-            var question = Umbraco.Content(questionId);
             <fieldset>
                 <legend>
-                    @question._frage
+                    @question.Question
                 </legend>
                 @{
-                    var answers = question.Children;
+                    IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
                     foreach (var answer in answers)
                     {
-                        if (question.DocumentTypeId == Templates.SingleChoiceQuestionTemplate)
+                        if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="radio" name="@questionId" value="@answer.Id" /> @answer._answer
+                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer
                             </p>
                         }
-                        else if (question.DocumentTypeId == Templates.MultipleChoiceQuestionTemplate)
+                        else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="checkbox" name="@questionId" value="@answer.Id" /> @answer._answer
+                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer
                             </p>
                         }
                     }
                 }
             </fieldset>
         }
-        <br/>
-        <p>
-            <a href="/auswertung-default" style="color: red">Fragebogen zur Korrektur geben</a>
-        </p>
+        <br />
+        <button type="submit">Fragebogen zur Korrektur geben</button>
     </form>
 }

@@ -1,5 +1,7 @@
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@{ var home = CurrentPage.Site(); }
+@using ELearning
+@using ELearning.Extensions
+@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
 
 <aside id="block-region-side-pre" class="span4 desktop-first-column pull-left block-region" data-blockregion="side-pre" data-droptarget="1">
     <a class="skip skip-block" id="fsb-1" href="#sb-1">
@@ -22,34 +24,23 @@
                         </a>
                     </p>
                     <ul>
-                        <li class="type_activity depth_2">
-                            <p class="tree_item leaf">
-                                <a title="Alle Module" href="/module">
-                                    <span class="item-content-wrap">Übersicht der Module</span>
-                                </a>
-                            </p>
-                        </li>
-                        <li class="type_activity depth_2">
-                            <p class="tree_item leaf">
-                                <a title="Alle Videos" href="/videos">
-                                    <span class="item-content-wrap">Übersicht der Videos</span>
-                                </a>
-                            </p>
-                        </li>
-                        <li class="type_activity depth_2">
-                            <p class="tree_item leaf">
-                                <a title="Alle Wissenstests" href="/wissenstests">
-                                    <span class="item-content-wrap">Übersicht der Wissenstests</span>
-                                </a>
-                            </p>
-                        </li>
-                        <li class="type_activity depth_2">
-                            <p class="tree_item leaf">
-                                <a title="Alle Benutzer" href="/benutzer">
-                                    <span class="item-content-wrap">Übersicht der Benutzer</span>
-                                </a>
-                            </p>
-                        </li>
+                        @{
+                            var items = ItemExtensions.RootItem().Children.Where(c => c.DocumentTypeAlias == Templates.Datapool);
+                            var overviews = items.As<ELearning.Models.Overview>();
+                        }
+                        @foreach (var overview in overviews)
+                        {
+                            if (overview.ShowInBreadcrumb)
+                            {
+                                <li class="type_activity depth_2">
+                                    <p class="tree_item leaf">
+                                        <a title="@overview.Name" href="@overview.Url">
+                                            <span class="item-content-wrap">@overview.Name</span>
+                                        </a>
+                                    </p>
+                                </li>
+                            }
+                        }
                     </ul>
                 </li>
             </ul>

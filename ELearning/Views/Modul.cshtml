@@ -1,41 +1,25 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits UmbracoTemplatePage
+@using ELearning.Models
+@using Our.Umbraco.Ditto
 @{
     Layout = "Master.cshtml";
-    string[] videos = CurrentPage._zugehoerigeLerninhalte.Split(',');
-    if (videos.Length == 1 && videos[0] == string.Empty)
-    {
-        videos = new string[0];
-    }
-    string[] wissenstests = CurrentPage._zugehoerigeWissenstests.Split(',');
-    if (wissenstests.Length == 1 && wissenstests[0] == string.Empty)
-    {
-        wissenstests = new string[0];
-    }
-    string[] ansprechpartner = CurrentPage._ansprechpartner.Split(',');
-    if (ansprechpartner.Length == 1 && ansprechpartner[0] == string.Empty)
-    {
-        ansprechpartner = new string[0];
-    }
+    var viewModel = Model.Content.As<Module>();
 }
 
 <h2>
-    @CurrentPage.Name
+    @viewModel.Name
 </h2>
-<p>
-    @CurrentPage._description
-</p>
-@if (videos.Length > 0)
+@viewModel.Description
+@if (viewModel.Videos.Any())
 {
     <p>
         <h3>
-            Zugehörige Lerninhalte (@videos.Length)
+            Zugehörige Lerninhalte (@viewModel.Videos.Count())
         </h3>
         <ul>
             @{
-                foreach (var videoId in videos)
+                foreach (var video in viewModel.Videos)
                 {
-                    var video = Umbraco.Content(videoId);
                     <li>
                         <a href="@video.Url">@video.Name</a>
                     </li>
@@ -52,19 +36,18 @@ else
         </h3>
     </p>
 }
-@if (wissenstests.Length > 0)
+@if (viewModel.Forms.Any())
 {
     <p>
         <h3>
-            Zugehörige Wissenstests (@wissenstests.Length)
+            Zugehörige Wissenstests (@viewModel.Forms.Count())
         </h3>
         <ul>
             @{
-                foreach (var wissenstestId in wissenstests)
+                foreach (var form in viewModel.Forms)
                 {
-                    var wissenstest = Umbraco.Content(wissenstestId);
                     <li>
-                        <a href="@wissenstest.Url">@wissenstest.Name</a>
+                        <a href="@form.Url">@form.Name</a>
                     </li>
                 }
             }
@@ -79,19 +62,18 @@ else
         </h3>
     </p>
 }
-@if (ansprechpartner.Length > 0)
+@if (viewModel.Users.Any())
 {
     <p>
         <h3>
-            Ansprechpartner (@ansprechpartner.Length)
+            Ansprechpartner (@viewModel.Users.Count())
         </h3>
         <ul>
             @{
-                foreach (var personId in ansprechpartner)
+                foreach (var user in viewModel.Users)
                 {
-                    var person = Umbraco.Content(personId);
                     <li>
-                        <a href="@person.Url">@person.Name</a>
+                        <a href="@user.Url">@user.Name</a>
                     </li>
                 }
             }

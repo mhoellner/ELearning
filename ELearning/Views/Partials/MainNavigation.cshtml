@@ -1,6 +1,5 @@
-@using UserExtensions = ELearning.Extensions.UserExtensions
+@using ELearning.Extensions
 @inherits UmbracoTemplatePage
-@{ var home = CurrentPage.Site(); }
 
 <header id="page-header" class="clearfix">
     <div class="container-fluid">
@@ -8,7 +7,7 @@
             <!-- HEADER: LOGO AREA -->
             <div class="logo-header">
                 <a class="logo" href="/" title="Startseite">
-                    <img src="@CurrentPage._siteLogo" class="logo" alt="logo" />
+                    <img src="@ItemExtensions.RootItem().SiteLogo" class="logo" alt="logo" />
                 </a>
             </div>
             <div class="login-header">
@@ -31,7 +30,6 @@
             <a class="brand" href="/">
                 E-Learning@HWR
             </a>
-            @*Sie sind angemeldet als @UserExtensions.GetCurrentUserId() test*@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
