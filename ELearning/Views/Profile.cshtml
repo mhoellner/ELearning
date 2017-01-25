@@ -1,25 +1,27 @@
 ﻿@inherits UmbracoTemplatePage
 @using System.Globalization
+@using ELearning.Models
+@using Our.Umbraco.Ditto
 @{
     Layout = "Master.cshtml";
+    var viewModel = Model.Content.As<Person>();
+}
 
-    if (CurrentPage._profilePic != null)
-    {
-        var image = Umbraco.Media(CurrentPage._profilePic);
-        <img src="@image.Url" alt="@image.Name" style="width:300px;height:300px" />
-    }
+@if (viewModel.ProfilePic != null)
+{
+    var image = Umbraco.Media(viewModel.ProfilePic);
+    <img src="@image.Url" alt="@image.Name" style="width:300px;height:300px" />
 }
 <p>
     <br/>
     <b>Meine Profilinformationen:</b>
 </p>
 <p>
-    Beigetreten am @Model.Content.CreateDate.ToString("dd. MMMM yyyy", new CultureInfo("de"))
+    Beigetreten am @viewModel.CreateDate.ToString("dd. MMMM yyyy", new CultureInfo("de"))
 </p>
+<hr/>
+@viewModel.ProfileDescription
+<hr/>
 <p>
-    @CurrentPage._profileDescription
-</p>
-<br/>
-<p>
-    Zuletzt geändert am @Model.Content.UpdateDate.ToString("dd. MMMM yyyy", new CultureInfo("de")) um @Model.Content.UpdateDate.ToString("HH:mm", new CultureInfo("de"))
+    Zuletzt geändert am @viewModel.UpdateDate.ToString("dd. MMMM yyyy", new CultureInfo("de")) um @viewModel.UpdateDate.ToString("HH:mm", new CultureInfo("de"))
 </p>

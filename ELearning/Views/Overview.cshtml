@@ -1,13 +1,11 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
 @{
 	Layout = "Master.cshtml";
+    var viewModel = Model.Content.As<ELearning.Models.Overview>();
 }
-<h3>@CurrentPage.Name</h3>
-@{
-    var children = Model.Content.Children.OrderBy(t => t.Name);
-}
-@foreach (var child in children)
+<h3>@viewModel.Name</h3>
+@foreach (var child in viewModel.Children.OrderBy(t => t.Name))
 {
     <h5>
         <a href="@child.Url">@child.Name</a>

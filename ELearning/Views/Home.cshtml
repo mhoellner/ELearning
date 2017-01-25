@@ -1,10 +1,11 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using ELearning.Models
+@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
 @{
-    Layout = "Master.cshtml";
+  Layout = "Master.cshtml";
+  var viewModel = Model.Content.As<Homepage>();
 }
 <h3 class="bx-heading">
-    @CurrentPage._siteTitle
+    @viewModel.SiteTitle
 </h3>
-<p>
-    @Html.Raw(CurrentPage._siteDescription)
-</p>
+@viewModel.SiteDescription

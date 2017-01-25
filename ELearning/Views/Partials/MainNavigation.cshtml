@@ -1,5 +1,5 @@
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@{ var home = CurrentPage.Site(); }
+@using ELearning.Extensions
+@inherits UmbracoTemplatePage
 
 <header id="page-header" class="clearfix">
     <div class="container-fluid">
@@ -7,7 +7,7 @@
             <!-- HEADER: LOGO AREA -->
             <div class="logo-header">
                 <a class="logo" href="/" title="Startseite">
-                    <img src="@CurrentPage._siteLogo" class="logo" alt="logo" />
+                    <img src="@ItemExtensions.RootItem().SiteLogo" class="logo" alt="logo" />
                 </a>
             </div>
             <div class="login-header">
