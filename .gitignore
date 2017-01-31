@@ -3,4 +3,7 @@ ELearning/App_Data/Logs
 ELearning/App_Data/TEMP
 ELearning/App_Data/NuGetBackup
 ELearning/obj/Debug
-.vs
+.vs/
+packages/
+ELearning/App_Data/Models/
+ELearning/App_Data/umbraco.config
