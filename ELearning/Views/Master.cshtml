@@ -1,5 +1,6 @@
 ﻿@using Our.Umbraco.Ditto
 @using ELearning.Extensions
+@using ELearning.Provider
 @inherits UmbracoTemplatePage
 @{
     Layout = null;
@@ -43,6 +44,7 @@
                             <div role="main">
                                 <div class="box generalbox info">
                                     <div class="no-overflow">
+                                        @Html.Partial("~/Views/Partials/Breadcrumb.cshtml", new BreadcrumbProvider(viewModel.Id).BreadcrumbItems)
                                         @RenderBody()
                                     </div>
                                 </div>
