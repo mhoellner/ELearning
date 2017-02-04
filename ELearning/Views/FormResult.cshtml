@@ -1,0 +1,16 @@
+﻿@inherits UmbracoViewPage<ELearning.Models.FormResult>
+@{
+    Layout = "Master.cshtml";
+    var form = Umbraco.TypedContent(Model.FormId);
+}
+
+<h1>
+    @Model.FormTitle
+</h1>
+<p>
+    Sie haben von @Model.AllCorrectAnswers möglichen Punkten
+    @Model.YourCorrectAnswers Punkte erreicht.
+</p>
+<p>
+    Zurück zum <a href="@form.Url">Test</a>
+</p>

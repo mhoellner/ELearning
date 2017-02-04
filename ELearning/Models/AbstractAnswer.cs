@@ -1,6 +1,8 @@
-﻿namespace ELearning.Models
+﻿using Umbraco.Core.Models;
+
+namespace ELearning.Models
 {
-    public abstract class AbstractAnswer : Item
+    public class AbstractAnswer : Item
     {
         public string Answer { get; set; }
     }

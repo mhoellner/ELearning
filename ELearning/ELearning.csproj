@@ -360,6 +360,7 @@
     <Content Include="Views\Partials\LowerScripts.cshtml" />
     <Content Include="Views\Partials\UpperScripts.cshtml" />
     <Content Include="Views\Partials\Breadcrumb.cshtml" />
+    <Content Include="Views\FormResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -395,10 +396,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\FormResultController.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Models\AbstractAnswer.cs" />
     <Compile Include="Models\CorrectAnswer.cs" />
     <Compile Include="Models\Form.cs" />
+    <Compile Include="Models\FormResult.cs" />
     <Compile Include="Models\Homepage.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Module.cs" />
