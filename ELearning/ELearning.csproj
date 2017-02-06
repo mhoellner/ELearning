@@ -397,6 +397,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\FormResultController.cs" />
+    <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Models\AbstractAnswer.cs" />
     <Compile Include="Models\CorrectAnswer.cs" />

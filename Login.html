@@ -6,9 +6,9 @@
     </head>
     <body>
     
-        <form id="loginForm" METHOD=POST ACTION="https://webmail.stud.hwr-berlin.de/ajax/login?action=login" action="#">        
-            Benutzername:   <input id=usrname name="name" type="text"/><br>
-            Passwort:       <input id=pssword name="password" type="password"/><br>
+        <form id="loginForm" METHOD="GET" ACTION="http://localhost:313/umbraco/api/login/login">        
+            Benutzername:   <input id="usrname" name="name" type="text"/><br>
+            Passwort:       <input id="pssword" name="password" type="password"/><br>
             <input type="submit"/>
         </form>
     </body>
