@@ -27,13 +27,13 @@
                         if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="radio" name="question-@question.Id" value="answer-@answer.Id"/> @answer.Answer
+                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer
                             </p>
                         }
                         else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="checkbox" name="question-@question.Id" value="answer-@answer.Id"/> @answer.Answer
+                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer
                             </p>
                         }
                     }
