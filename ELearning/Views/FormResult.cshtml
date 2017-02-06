@@ -8,9 +8,15 @@
     @Model.FormTitle
 </h1>
 <p>
-    Sie haben von @Model.AllCorrectAnswers möglichen Punkten
-    @Model.YourCorrectAnswers Punkte erreicht.
+    Sie haben @Model.YourCorrectAnswers von @Model.AllCorrectAnswers Punkten erreicht.
+    @if (Model.YourCorrectAnswers == Model.AllCorrectAnswers)
+    {
+        <text>Sie haben alle Fragen korrekt beantwortet.</text>
+    }
 </p>
-<p>
-    Zurück zum <a href="@form.Url">Test</a>
-</p>
+<form style="display: inline" action="@form.Url">
+    <button type="submit" >Zurück zum Test</button>
+</form>
+<form style="display: inline" action="/">
+    <button type="submit">Zur Startseite</button>
+</form>

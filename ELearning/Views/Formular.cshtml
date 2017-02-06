@@ -12,7 +12,8 @@
 @viewModel.Introduction
 @if (viewModel.Questions.Any())
 {
-    <form>
+    <form action="/auswertung" method="post">
+        <input type="hidden" name="formId" value="@viewModel.Id" />
         @foreach (var question in viewModel.Questions)
         {
             <fieldset>
@@ -26,20 +27,20 @@
                         if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer
+                                <input type="radio" name="question-@question.Id" value="answer-@answer.Id"/> @answer.Answer
                             </p>
                         }
                         else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
                         {
                             <p>
-                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer
+                                <input type="checkbox" name="question-@question.Id" value="answer-@answer.Id"/> @answer.Answer
                             </p>
                         }
                     }
                 }
             </fieldset>
         }
-        <br />
+        <br/>
         <button type="submit">Fragebogen zur Korrektur geben</button>
     </form>
 }
