@@ -61,7 +61,7 @@ namespace ELearning.Controller
                         lengthOfDisplayName);
                 }
             }
-            return displayName;
+            return loginResponseString;
         }
     }
 }

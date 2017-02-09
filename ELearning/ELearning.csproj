@@ -306,6 +306,7 @@
   <ItemGroup>
     <Content Include="css\video.css" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Form.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\jqueryconfig.js" />
     <Content Include="js\jquerythings.js" />

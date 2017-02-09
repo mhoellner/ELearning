@@ -12,7 +12,7 @@
 @viewModel.Introduction
 @if (viewModel.Questions.Any())
 {
-    <form action="/auswertung" method="post">
+    <form action="/auswertung" method="post" id="questionForm">
         <input type="hidden" name="formId" value="@viewModel.Id" />
         @foreach (var question in viewModel.Questions)
         {
@@ -41,6 +41,9 @@
             </fieldset>
         }
         <br/>
+        <div id="formErrorMessage">
+            <script src="~/js/Form.js"></script>
+        </div>
         <button type="submit">Fragebogen zur Korrektur geben</button>
     </form>
 }

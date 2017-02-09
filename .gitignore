@@ -7,3 +7,4 @@ ELearning/obj/Debug
 packages/
 ELearning/App_Data/Models/
 ELearning/App_Data/umbraco.config
+*.csproj.user
