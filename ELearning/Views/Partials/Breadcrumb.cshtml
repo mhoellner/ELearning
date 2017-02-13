@@ -1,16 +1,20 @@
 ﻿@using ELearning.Models
 @model List<ELearning.Models.Item>
 
-<div class="breadcrumb">
-    @foreach (Item item in Model)
-    {
-        if (Model.Last().Id != item.Id)
-        {
-            <text><a href="@item.Url">@item.Name</a> &rsaquo; </text>
-        }
-        else
-        {
-            @item.Name
-        }
-    }
+<div class="background-dark ">
+    <div class="container breadcrumb">
+                @foreach (Item item in Model)
+            {
+                if (Model.Last().Id != item.Id)
+                {
+
+                        <a class="breadcrumb-item" href="@item.Url">@item.Name</a>
+                    }
+                    else
+                    {
+                        <span class="breadcrumb-item active">@item.Name</span>
+                    }
+                }
+    </div>
+    
 </div>

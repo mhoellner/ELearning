@@ -3,47 +3,30 @@
 @using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 
-<aside id="block-region-side-pre" class="span4 desktop-first-column pull-left block-region" data-blockregion="side-pre" data-droptarget="1">
-    <a class="skip skip-block" id="fsb-1" href="#sb-1">
-        Navigation überspringen
-    </a>
-    <div id="inst112421" class="block_navigation  block" role="navigation" data-block="navigation" data-instanceid="112421" aria-labelledby="instance-112421-header" data-dockable="1">
-        <div class="header">
-            <div class="title">
-                <div class="block_action">
-                </div>
-                <h2 id="instance-112421-header">Navigation</h2>
-            </div>
-        </div>
-        <div class="content">
-            <ul class="block_tree list">
-                <li class="type_unknown depth_1 contains_branch current_branch" aria-expanded="true">
-                    <p class="tree_item branch active_tree_node canexpand navigation_node">
-                        <a href="/">
-                            Startseite
+
+<div class="boxes">
+    <h2>
+            <i class="fa fa-bars"></i> Navigation
+    </h2>
+
+    <div>
+        <ul class="nav flex-column">
+            @{
+                var items = ItemExtensions.RootItem().Children.Where(c => c.DocumentTypeAlias == Templates.Datapool);
+                var overviews = items.As<ELearning.Models.Overview>();
+            }
+            @foreach (var overview in overviews)
+            {
+                if (overview.ShowInBreadcrumb)
+                {
+                    <li class="nav-item">
+                        <a title="@overview.Name" href="@overview.Url" class="nav-link btn btn-secondary">
+                            @overview.Name
                         </a>
-                    </p>
-                    <ul>
-                        @{
-                            var items = ItemExtensions.RootItem().Children.Where(c => c.DocumentTypeAlias == Templates.Datapool);
-                            var overviews = items.As<ELearning.Models.Overview>();
-                        }
-                        @foreach (var overview in overviews)
-                        {
-                            if (overview.ShowInBreadcrumb)
-                            {
-                                <li class="type_activity depth_2">
-                                    <p class="tree_item leaf">
-                                        <a title="@overview.Name" href="@overview.Url">
-                                            <span class="item-content-wrap">@overview.Name</span>
-                                        </a>
-                                    </p>
-                                </li>
-                            }
-                        }
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                    </li>
+                }
+            }
+        </ul>
     </div>
-</aside>
+
+</div>

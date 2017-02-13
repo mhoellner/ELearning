@@ -1,0 +1,89 @@
+﻿.wrapper {
+    border-top: 4px solid #D92425;
+}
+
+.background-red {
+    background-color: #d92425;
+}
+
+.background-grey {
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+}
+
+.boxes {
+    padding: 13px;
+    background-color: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+.boxes .btn {
+    background-color: #f5f5f5;
+    margin-bottom:4px;
+    white-space: normal;
+}
+.boxes .footer {
+    margin-top:10px;
+}
+
+#inputName {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#submit {
+    color: #d92425;
+    width: 15%;
+}
+
+#inputPassword {
+    width: 80%;
+}
+
+.login-form {
+    padding: 15px 0 15px 0;
+}
+
+.background-dark {
+    background: none repeat scroll 0 0 #6B6F73;
+    color: #fff;
+}
+
+    .background-dark a {
+        color: #fff;
+    }
+
+        .background-dark a:visited {
+            color: #fff;
+        }
+
+    .background-dark > .active {
+        color: #fff;
+    }
+
+    .background-dark .breadcrumb {
+        background: none repeat scroll 0 0 #6B6F73;
+        color: #fff;
+    }
+
+        .background-dark .breadcrumb a {
+            color: #fff;
+        }
+
+.breadcrumb .background-dark .breadcrumb a:visited {
+    color: #fff;
+}
+
+.background-dark .breadcrumb > .active {
+    color: #fff;
+}
+
+.background-dark .breadcrumb-item:before {
+    color: #fff;
+}
+
+.header {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
