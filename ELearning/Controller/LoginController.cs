@@ -8,23 +8,11 @@ namespace ELearning.Controller
 {
     public class LoginController : UmbracoApiController
     {
-        private bool _loginStatus = false;
-        public bool LoggedIn()
-        {
-            return _loginStatus;
-        }
-        
         [HttpGet]
         public async Task<string> Login(string name, string password)
         {
-            string post_data = "name=" + name + "&password=" + password;
             string loginUrl = "https://webmail.stud.hwr-berlin.de/ajax/login?action=login";
             string nameUrl = "https://webmail.stud.hwr-berlin.de/ajax/contacts?action=getuser";
-            string loginResponseString = "empty";
-            string nameResponseString = "empty";
-            string sessionID = "empty";
-            string userID = "empty";
-            string displayName = "Mustermann, Max";
 
             using (HttpClient client = new HttpClient())
             {
@@ -35,33 +23,29 @@ namespace ELearning.Controller
                 };
                 FormUrlEncodedContent content = new FormUrlEncodedContent(postdata);
                 HttpResponseMessage response = await client.PostAsync(loginUrl, content);
-                loginResponseString = await response.Content.ReadAsStringAsync();
-                _loginStatus = loginResponseString.Contains("session");
-
-                if (loginResponseString.Contains("session"))
+                string loginResponseString = await response.Content.ReadAsStringAsync();
+                var loginJson = System.Web.Helpers.Json.Decode<Dictionary<string, string>>(loginResponseString);
+                if (loginJson["session"] != null)
                 {
-                    string[] s = loginResponseString.Split(',');
-                    sessionID = s[0].Split(':')[1].Substring(1, s[0].Split(':')[1].Length - 2);
-                    userID = s[2].Split(':')[1];
-
+                    string sessionId = loginJson["session"];
+                    string userId = loginJson["user_id"];
                     postdata = new Dictionary<string, string>
                     {
-                        {"session", sessionID },
-                        {"id", userID }
+                        {"session", sessionId },
+                        {"id", userId }
                     };
                     content = new FormUrlEncodedContent(postdata);
                     response = await client.PostAsync(nameUrl, content);
-                    nameResponseString = await response.Content.ReadAsStringAsync();
-
-                    int firstLetterOfDisplayName = nameResponseString.IndexOf("display_name\":\"") + 15;
-                    int indexOfNextQuotationMark = nameResponseString.IndexOf("\"", firstLetterOfDisplayName);
-                    int lengthOfDisplayName = indexOfNextQuotationMark - firstLetterOfDisplayName;
-                    displayName = nameResponseString.Substring(
-                        firstLetterOfDisplayName,
-                        lengthOfDisplayName);
+                    string nameResponseString = await response.Content.ReadAsStringAsync();
+                    var nameJson = System.Web.Helpers.Json.Decode(nameResponseString);
+                    if (nameJson.data != null)
+                    {
+                        return nameJson.data.display_name;
+                    }
+                    return "Couldn't connect to " + nameUrl;
                 }
+                return "Username or password is wrong.";
             }
-            return loginResponseString;
         }
     }
 }
