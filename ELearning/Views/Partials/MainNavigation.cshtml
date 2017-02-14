@@ -1,22 +1,36 @@
 @using ELearning.Extensions
 @inherits UmbracoTemplatePage
 
-<header id="page-header" class="container header">
-    <div class="container background-red">
+<header id="page-header" class="header background-red">
+    <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <a class="logo" href="/" title="Startseite">
                     <img src="@ItemExtensions.RootItem().SiteLogo" class="logo vertical-center" alt="logo" />
                 </a>
             </div>
 
-            <div class="col-md-2 background-grey">
+            <div class="col-md-3 background-grey">
                 <div class="login-form">
                     <form class="" method="post" action="/Logged-In">
                         <div id="login-form">
-                            <input id="inputName" class="span2" type="text" name="username" placeholder="Anmeldename">
-                            <input id="inputPassword" class="span2" type="password" name="password" placeholder="Kennwort">
-                            <input type="submit" id="submit" name="submit" value="&#xf04b;" class="fa" /> <!--Fontawsome per Unicode in Button einbinden.-->
+                            <div id="username">
+                                <label class="sr-only" for="inlineFormInputGroup">Anmeldename</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon"><span class="fa fa-user"></span></div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Anmeldename">
+                                </div>
+                            </div>
+                            <div id="password">
+                                <label class="sr-only" for="inlineFormInputGroup">Kennwort</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                                    <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Kennwort">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary background-red" type="submit" id="submit"><span class="fa fa-play"></span></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

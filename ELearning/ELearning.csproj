@@ -359,8 +359,6 @@
     <Content Include="Views\Modul.cshtml" />
     <Content Include="Views\MultipleChoiceQuestion.cshtml" />
     <Content Include="Views\SingleChoiceQuestion.cshtml" />
-    <Content Include="Views\Partials\LowerScripts.cshtml" />
-    <Content Include="Views\Partials\UpperScripts.cshtml" />
     <Content Include="Views\Partials\Breadcrumb.cshtml" />
     <Content Include="Views\FormResult.cshtml" />
     <None Include="Web.Debug.config">

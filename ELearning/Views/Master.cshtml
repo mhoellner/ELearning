@@ -17,16 +17,10 @@
     <meta name="keywords" content="elearning, ELearning@HWR" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script type="text/javascript" src="../js/master.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href="../css/video.css" />
-    <link rel="stylesheet" type="text/css" href="../css/master-style.css" />
-
-    <!--Workaround: Da Datein auf mehreren Ebenen liegen, und sonst bei Menüpunkten der dritten Ebene CSS nicht greift.+-->
-    <link rel="stylesheet" type="text/css" href="../../css/video.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/master-style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/video.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/master-style.css" />
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -35,8 +29,6 @@
 </head>
 
 <body id="" class="wrapper">
-
-    @*@Html.Partial("~/Views/Partials/UpperScripts.cshtml")*@
     @Html.Partial("~/Views/Partials/MainNavigation.cshtml")
     @Html.Partial("~/Views/Partials/Breadcrumb.cshtml", new BreadcrumbProvider(viewModel.Id).BreadcrumbItems)
 
@@ -47,7 +39,9 @@
                 @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
             </div>
             <div class="col-md-6">
-                @RenderBody()
+                <div class="boxes">
+                    @RenderBody()
+                </div>
             </div>
             <div class="col-md-3">
                 @Html.Partial("~/Views/Partials/ITNews.cshtml")
@@ -55,7 +49,6 @@
         </div>
 
     </div>
-        @*@{ Html.RenderPartial("BottomNavigation"); }
-        @Html.Partial("~/Views/Partials/LowerScripts.cshtml")*@
+        @*@{ Html.RenderPartial("BottomNavigation"); }*@
 </body>
 </html>

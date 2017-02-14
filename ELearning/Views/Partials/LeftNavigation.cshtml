@@ -4,7 +4,7 @@
 @inherits UmbracoTemplatePage
 
 
-<div class="boxes">
+<div class="boxes boxes-grey">
     <h2>
             <i class="fa fa-bars"></i> Navigation
     </h2>
@@ -20,7 +20,7 @@
                 if (overview.ShowInBreadcrumb)
                 {
                     <li class="nav-item">
-                        <a title="@overview.Name" href="@overview.Url" class="nav-link btn btn-secondary">
+                        <a title="@overview.Name" href="@overview.Url" class="nav-link btn btn-secondary btn-left btn-redhover btn-grey">
                             @overview.Name
                         </a>
                     </li>

@@ -17,33 +17,30 @@
         @foreach (var question in viewModel.Questions)
         {
             <fieldset>
-                <legend>
+                <h5>
                     @question.Question
-                </legend>
+                </h5>
                 @{
                     IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
                     foreach (var answer in answers)
                     {
                         if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                         {
-                            <p>
-                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer
-                            </p>
+                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer <br />
                         }
                         else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
                         {
-                            <p>
-                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer
-                            </p>
+                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer<br />
                         }
                     }
                 }
             </fieldset>
+            <br />
         }
         <br/>
         <div id="formErrorMessage">
             <script src="~/js/Form.js"></script>
         </div>
-        <button type="submit">Fragebogen zur Korrektur geben</button>
+        <button type="submit" class="btn btn-secondary background-red">Fragebogen zur Korrektur geben</button>
     </form>
 }
