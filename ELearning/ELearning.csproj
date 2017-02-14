@@ -311,6 +311,7 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\jqueryconfig.js" />
     <Content Include="js\jquerythings.js" />
+    <Content Include="js\Login.js" />
     <Content Include="js\master.js" />
     <Content Include="js\moodledict.js" />
     <Content Include="js\piwik.js" />
