@@ -1,52 +1,39 @@
 @using ELearning.Extensions
 @inherits UmbracoTemplatePage
 
-<header id="page-header" class="clearfix">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <!-- HEADER: LOGO AREA -->
-            <div class="logo-header">
+<header id="page-header" class="header background-red">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-9">
                 <a class="logo" href="/" title="Startseite">
-                    <img src="@ItemExtensions.RootItem().SiteLogo" class="logo" alt="logo" />
+                    <img src="@ItemExtensions.RootItem().SiteLogo" class="logo vertical-center" alt="logo" />
                 </a>
             </div>
-            <div class="login-header">
-                <div class="profileblock">
-                    <form class="navbar-form pull-right" id="loginForm">
-                        @*<script src="~/js/Login.js"></script>*@
-                        <div id="block-login">
-                            <input id="inputName" class="span2" type="text" name="username" placeholder="Anmeldename" style="margin-bottom: 10px;">
-                            <input id="inputPassword" class="span2" type="password" name="password" placeholder="Kennwort">
-                            <input type="submit" id="submit" name="submit" value=""/>
+            <div class="col-md-3 background-grey">
+                <div class="login-form">
+                    <form class="" method="post" action="/Logged-In">
+                        <div id="login-form">
+                            <div id="username">
+                                <label class="sr-only" for="inlineFormInputGroup">Anmeldename</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon"><span class="fa fa-user"></span></div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Anmeldename">
+                                </div>
+                            </div>
+                            <div id="password">
+                                <label class="sr-only" for="inlineFormInputGroup">Kennwort</label>
+                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                                    <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Kennwort">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary background-red" type="submit" id="submit"><span class="fa fa-play"></span></button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
-<header role="banner" class="navbar">
-    <nav role="navigation" class="navbar-inner">
-        <div class="container-fluid">
-            <a class="brand" href="/">
-                E-Learning@HWR
-            </a>
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <div class="nav-collapse collapse">
-                <div class="nav-divider-right"></div>
-                <ul class="nav pull-right">
-                    <li></li>
-                </ul>
-                <form id="search" action="http://moodle.hwr-berlin.de/course/search.php" method="GET">
-                    <div class="nav-divider-left"></div>
-                    <input id="coursesearchbox" type="text" onFocus="if(this.value === 'Kurse suchen' ) this.value='';" onBlur="if(this.value === '') this.value='Kurse suchen';" value="Kurse suchen" name="search">
-                    <input type="submit" value="">
-                </form>
-            </div>
-        </div>
-    </nav>
+        </div>  <!-- end of row -->
+    </div>  <!-- end of container -->
 </header>
