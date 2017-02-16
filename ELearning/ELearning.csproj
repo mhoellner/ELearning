@@ -306,16 +306,8 @@
   <ItemGroup>
     <Content Include="css\master-style.css" />
     <Content Include="css\video.css" />
-    <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Form.js" />
-    <Content Include="js\jquery.min.js" />
-    <Content Include="js\jqueryconfig.js" />
-    <Content Include="js\jquerythings.js" />
     <Content Include="js\Login.js" />
-    <Content Include="js\master.js" />
-    <Content Include="js\moodledict.js" />
-    <Content Include="js\piwik.js" />
-    <Content Include="js\windowthings.js" />
     <Content Include="packages.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="Views\Web.config" />
