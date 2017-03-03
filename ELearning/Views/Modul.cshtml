@@ -10,7 +10,10 @@
     @viewModel.Name
 </h2>
 @viewModel.Description
+
+@*Accordion for Videos, Forms and Profiles*@
 <div id="accordion" role="tablist" aria-multiselectable="true">
+    @*Video-Tab*@
     <div class="card">
         <div class="card-header background-grey" role="tab" id="headingOne">
             <h5 class="mb-0">
@@ -21,26 +24,27 @@
         </div>
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
             <div class="card-block">
-            @if (viewModel.Videos.Any())
-            {
-                <ul>
-                    @foreach (var video in viewModel.Videos)
-                    {
-                        <li>
-                            <a href="@video.Url">@video.Name</a>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>
-                    Derzeit sind keine Lerninhalte in diesem Modul hinterlegt.
-                </p>
-            }
+                @if (viewModel.Videos.Any())
+                {
+                    <ul>
+                        @foreach (var video in viewModel.Videos)
+                        {
+                            <li>
+                                <a href="@video.Url">@video.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>
+                        Derzeit sind keine Lerninhalte in diesem Modul hinterlegt.
+                    </p>
+                }
             </div>
         </div>
     </div>
+    @*Form-Tab*@
     <div class="card">
         <div class="card-header background-grey" role="tab" id="headingTwo">
             <h5 class="mb-0">
@@ -51,26 +55,27 @@
         </div>
         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="card-block">
-            @if (viewModel.Forms.Any())
-            {
-                <ul>
-                    @foreach (var form in viewModel.Forms)
-                    {
-                        <li>
-                            <a href="@form.Url">@form.Name</a>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>
-                    Derzeit sind keine Wissenstests in diesem Modul hinterlegt.
-                </p>
-            }
+                @if (viewModel.Forms.Any())
+                {
+                    <ul>
+                        @foreach (var form in viewModel.Forms)
+                        {
+                            <li>
+                                <a href="@form.Url">@form.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>
+                        Derzeit sind keine Wissenstests in diesem Modul hinterlegt.
+                    </p>
+                }
             </div>
         </div>
     </div>
+    @*Profile-Tab*@
     <div class="card">
         <div class="card-header background-grey" role="tab" id="headingThree">
             <h5 class="mb-0">
@@ -81,23 +86,23 @@
         </div>
         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="card-block">
-            @if (viewModel.Users.Any())
-            {
-                <ul>
-                    @foreach (var user in viewModel.Users)
-                    {
-                        <li>
-                            <a href="@user.Url">@user.Name</a>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>
-                    Derzeit sind keine Ansprechpartner in diesem Modul hinterlegt.
-                </p>
-            }
+                @if (viewModel.Users.Any())
+                {
+                    <ul>
+                        @foreach (var user in viewModel.Users)
+                        {
+                            <li>
+                                <a href="@user.Url">@user.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>
+                        Derzeit sind keine Ansprechpartner in diesem Modul hinterlegt.
+                    </p>
+                }
             </div>
         </div>
     </div>

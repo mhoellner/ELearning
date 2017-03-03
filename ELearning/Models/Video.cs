@@ -5,6 +5,9 @@ using Umbraco.Core;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Video-Views.
+    /// </summary>
     public class Video : Item
     {
         [UmbracoProperty("TextueberVideo")]
@@ -16,6 +19,9 @@ namespace ELearning.Models
         [UmbracoProperty("youtubeLink")]
         public string YoutubeLink { get; set; }
 
+        /// <summary>
+        /// Gets the full Youtube-Embed-HTML
+        /// </summary>
         [DittoIgnore]
         public HtmlString YoutubeEmbedded
         {
