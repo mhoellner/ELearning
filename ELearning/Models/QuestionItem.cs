@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using Our.Umbraco.Ditto;
 
 namespace ELearning.Models
 {
@@ -8,7 +7,6 @@ namespace ELearning.Models
     /// </summary>
     public class QuestionItem : Item
     {
-        [UmbracoProperty("frage")]
         public HtmlString Question { get; set; }
     }
 }
