@@ -2,6 +2,9 @@
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Homepage-View.
+    /// </summary>
     public class Homepage : Item
     {
         public HtmlString SiteDescription { get; set; }

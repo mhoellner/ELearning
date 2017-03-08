@@ -4,6 +4,9 @@ using Umbraco.Web.Models;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Form-Result-Views.
+    /// </summary>
     public class FormResult : RenderModel
     {
         public FormResult(IPublishedContent content, CultureInfo culture) : base(content, culture)

@@ -5,6 +5,9 @@ using Umbraco.Web;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Module-Views.
+    /// </summary>
     public class Module : Item
     {
         public HtmlString Description { get; set; }

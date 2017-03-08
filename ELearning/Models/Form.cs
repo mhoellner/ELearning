@@ -6,6 +6,9 @@ using Umbraco.Web;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Form-Views.
+    /// </summary>
     public class Form : Item
     {
         [UmbracoProperty("einleitung")]

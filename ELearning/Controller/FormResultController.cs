@@ -6,6 +6,9 @@ using Umbraco.Web.Models;
 
 namespace ELearning.Controller
 {
+    /// <summary>
+    /// Executes for all contents with the FormResult-Template.
+    /// </summary>
     public class FormResultController : Umbraco.Web.Mvc.RenderMvcController
     {
         public override ActionResult Index(RenderModel model)
@@ -24,9 +27,9 @@ namespace ELearning.Controller
                 allCorrectAnswers += question.Children.Count(c => c.DocumentTypeAlias == "correctAnswer");
             }
 
+            //Get amount of correct answers in the current request
             for (int i = 1; i < args.Length; i++)
             {
-                //Get amount of correct answers in the current request
                 string answerId = args[i].Split('=')[1];
                 string docAlias = Umbraco.TypedContent(answerId).DocumentTypeAlias;
                 if (docAlias == "correctAnswer")
@@ -43,6 +46,7 @@ namespace ELearning.Controller
             {
                 yourCorrectAnswers = 0;
             }
+            //Build a Model for the View.
             var formResult = new FormResult(Umbraco.AssignedContentItem)
             {
                 FormId = int.Parse(formId),

@@ -4,6 +4,9 @@ using Umbraco.Core.Models;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Umbraco Base Model. Equals the standard IPublishedContent.
+    /// </summary>
     public class Item
     {
         public int Id { get; set; }

@@ -2,6 +2,9 @@
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for our Profile-Views.
+    /// </summary>
     public class Person : Item
     {
         public string ProfilePic { get; set; }

@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col-md-9">
                 <a class="logo" href="/" title="Startseite">
-                    <img src="@ItemExtensions.RootItem().SiteLogo" class="logo vertical-center" alt="logo" />
+                    <img src="@Umbraco.TypedMedia(ItemExtensions.RootItem().SiteLogo).Url" class="logo vertical-center" alt="logo" />
                 </a>
             </div>
             <div class="col-md-3 background-grey">

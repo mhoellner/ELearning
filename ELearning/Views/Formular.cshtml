@@ -14,6 +14,7 @@
 {
     <form action="/auswertung" method="post" id="questionForm">
         <input type="hidden" name="formId" value="@viewModel.Id" />
+         @*Iterating all Questions*@ 
         @foreach (var question in viewModel.Questions)
         {
             <fieldset>
@@ -22,8 +23,10 @@
                 </h5>
                 @{
                     IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
+                    //Iterating all Answers to the current question
                     foreach (var answer in answers)
                     {
+                        //Differentiates whether it's a Radiobutton or a checkbox
                         if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                         {
                                 <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer <br />

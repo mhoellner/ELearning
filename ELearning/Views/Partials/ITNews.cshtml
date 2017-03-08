@@ -1,41 +1,37 @@
+@using System.ServiceModel.Syndication
+@using System.Xml
 @inherits UmbracoTemplatePage
+@{
+    // Get RSS-Feed
+    var r = XmlReader.Create("http://www.it.hwr-berlin.de/de/?no_cache=1&type=100");
+    var items = SyndicationFeed.Load(r);
+    r.Close();
+}
 
-<div class="boxes boxes-grey">
-    <h2>
-        <i class="fa fa-rss"></i> IT News
-    </h2>
-        <ul  class="nav flex-column">
-            <li  class="nav-item">
-                    <a onclick="this.target = &;quot;_blank & quot;" href="http://www.it.hwr-berlin.de/de/meldungen/news-detail/?tx_ttnews%5Btt_news%5D=146&amp;cHash=7f6879acc69152b50fd40a090b507e98" class="btn btn-secondary btn-grey btn-redhover">
-                        Studentische Hilfskraft im E-Learning Team ab November gesucht
+@if (items != null)
+{
+    <div class="boxes boxes-grey">
+        <h2>
+            <i class="fa fa-rss"></i> IT News
+        </h2>
+        <ul class="nav flex-column">
+            @* Get the first five feeds to display *@
+            @foreach (SyndicationItem item in items.Items.Take(5))
+            {
+                <li class="nav-item">
+                    <a onclick="this.target = '_blank'" href="@item.Links.FirstOrDefault().GetAbsoluteUri()" class="btn btn-secondary btn-grey btn-redhover">
+                        @item.Title.Text
                     </a>
-            </li>
-            <li  class="nav-item">
-                    <a onclick="this.target = &;quot;_blank & quot;" href="http://www.it.hwr-berlin.de/de/meldungen/news-detail/?tx_ttnews%5Btt_news%5D=148&amp;cHash=818a4ea6407d60ea72e9dacaa69c4f7c" class="btn btn-secondary btn-grey btn-redhover">
-                        Campus4u Wartungsarbeiten / Maintenance
-                    </a>
-            </li>
-            <li  class="nav-item">
-                    <a onclick="this.target = &;quot;_blank & quot;" href="http://www.it.hwr-berlin.de/de/meldungen/news-detail/?tx_ttnews%5Btt_news%5D=144&amp;cHash=813de156d33f1a33ad1b0ec47ff09f95" class="btn btn-secondary btn-grey btn-redhover">
-                        Studentische Hilfskräfte für das Videoteam am Campus Schöneberg ab September gesucht
-                    </a>
-            </li>
-            <li class="nav-item">
-                    <a onclick="this.target = &;quot;_blank & quot;" href="http://www.it.hwr-berlin.de/de/meldungen/news-detail/?tx_ttnews%5Btt_news%5D=143&amp;cHash=71af1f75f20b215fb1f7a50572b0d0cf" class="btn btn-secondary btn-grey btn-redhover">
-                        Studentische Hilfskräfte für das Projekt „Berliner Campuscard“ ab September gesucht
-                    </a>
-            </li>
-            <li class="nav-item">
-                    <a onclick="this.target = &;quot;_blank & quot;" href="http://www.it.hwr-berlin.de/de/meldungen/news-detail/?tx_ttnews%5Btt_news%5D=142&amp;cHash=d454e252a401f2134c134dcee5158a84" class="btn btn-secondary btn-grey btn-redhover">
-                        Neuer IT Servicepoint am Campus Schöneberg
-                    </a>
-            </li>
+                </li>
+            }
+            @* Link to the source *@
             <li class="footer">
                 <a href="http://www.it.hwr-berlin.de/" class="btn btn-secondary btn-grey btn-redhover">
                     Quelle
                 </a>
             </li>
         </ul>
-        
 
-</div>
+
+    </div>
+}
