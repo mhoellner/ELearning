@@ -4,12 +4,11 @@
 @inherits UmbracoTemplatePage
 
 <div class="login-form">
-    <script src="~/js/Login.js"></script>
-    
+        
     @{
     }
 
-            <form class="" action="javascript:login()">
+            <form class="" action="javascript:login()" id="unlogged">
                 <div id="login-form">
                     <div>
                         <label class="sr-only" for="inlineFormInputGroup">Anmeldename</label>
@@ -30,6 +29,9 @@
                     </div>
                 </div>
             </form>
+    <div id="logged" class="user-loggedIn"><span id="nameLogged"></span>
+        <button class="btn btn-secondary background-red" type="button" onclick="Logout();">Logout</button></div>
+    <script src="~/js/Login.js"></script>
         }
     }
 </div>
