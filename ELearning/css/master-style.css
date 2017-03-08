@@ -43,8 +43,12 @@
     margin-top: 10px;
 }
 
-#username {
+.input-group.name {
     margin-bottom: 10px;
+}
+
+.input-group-addon {
+    width: 40px;
 }
 
 .login-form {

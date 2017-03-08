@@ -10,29 +10,8 @@
                 </a>
             </div>
             <div class="col-md-3 background-grey">
-                <div class="login-form">
-                    <form class="" method="post" action="/Logged-In">
-                        <div id="login-form">
-                            <div id="username">
-                                <label class="sr-only" for="inlineFormInputGroup">Anmeldename</label>
-                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <div class="input-group-addon"><span class="fa fa-user"></span></div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Anmeldename">
-                                </div>
-                            </div>
-                            <div id="password">
-                                <label class="sr-only" for="inlineFormInputGroup">Kennwort</label>
-                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                                    <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Kennwort">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-secondary background-red" type="submit" id="submit"><span class="fa fa-play"></span></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                @Html.Partial("~/Views/Partials/LoginForm.cshtml")
+       
             </div>
         </div>  <!-- end of row -->
     </div>  <!-- end of container -->

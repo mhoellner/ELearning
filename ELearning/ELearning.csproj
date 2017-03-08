@@ -354,6 +354,7 @@
     <Content Include="Views\SingleChoiceQuestion.cshtml" />
     <Content Include="Views\Partials\Breadcrumb.cshtml" />
     <Content Include="Views\FormResult.cshtml" />
+    <Content Include="Views\Partials\LoginForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

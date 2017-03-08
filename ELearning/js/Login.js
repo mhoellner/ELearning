@@ -1,19 +1,15 @@
-﻿// Not working yet.
-//TODO: Build a request to our API-Logincontroller
+﻿
+function login() {
+  var url = "/umbraco/api/login/login?name=" + document.getElementById('username').value + "&password=" + document.getElementById('password').value;
+    var request = new XMLHttpRequest();
 
-//window.onload = function () {
-//  var loginForm = document.getElementById('loginForm');
-//  var url = "/umbraco/api/login/login";
-//  loginForm.onsubmit = function (url, callback) {
-    
-//    this.preventDefault();
-//    var xmlHttp = new XMLHttpRequest();
-//    xmlHttp.onreadystatechange = function() {
-//      if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-//        callback(xmlHttp.responseText);
-//      }
-//      xmlHttp.open('GET', url, true);
-//      xmlHttp.send(null);
-//    }
-//  }
-//}
+    request.open("GET", url);
+    request.addEventListener('load', function (event) {
+        if (request.status >= 200 && request.status < 300) {
+            console.log(request.responseText);
+        } else {
+            console.warn(request.statusText, request.responseText);
+        }
+    });
+    request.send();
+}

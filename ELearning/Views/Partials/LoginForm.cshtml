@@ -1,0 +1,61 @@
+﻿@using ELearning
+@using ELearning.Extensions
+@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
+
+<div class="login-form">
+    <script src="~/js/Login.js"></script>
+    
+    @{
+    }
+
+            <form class="" action="javascript:login()">
+                <div id="login-form">
+                    <div>
+                        <label class="sr-only" for="inlineFormInputGroup">Anmeldename</label>
+                        <div class="input-group name">
+                            <div class="input-group-addon"><span class="fa fa-user"></span></div>
+                            <input type="text" class="form-control" id="username" placeholder="Anmeldename">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="sr-only" for="inlineFormInputGroup">Kennwort</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                            <input type="password" class="form-control" id="password" placeholder="Kennwort">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary background-red" type="submit" id="submit"><span class="fa fa-play"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+    }
+</div>
+@*<div class="boxes boxes-grey">
+    <h2>
+        <i class="fa fa-bars"></i> Navigation
+    </h2>
+
+    <div>
+        <ul class="nav flex-column">
+            @{
+                var items = ItemExtensions.RootItem().Children.Where(c => c.DocumentTypeAlias == Templates.Datapool);
+                var overviews = items.As<ELearning.Models.Overview>();
+            }
+            @foreach (var overview in overviews)
+            {
+                if (overview.ShowInBreadcrumb)
+                {
+                    <li class="nav-item">
+                        <a title="@overview.Name" href="@overview.Url" class="nav-link btn btn-secondary btn-left btn-redhover btn-grey">
+                            @overview.Name
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+</div>*@
