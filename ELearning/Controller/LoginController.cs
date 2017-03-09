@@ -35,18 +35,18 @@ namespace ELearning.Controller
                 FormUrlEncodedContent content = new FormUrlEncodedContent(postdata);
                 HttpResponseMessage response = await client.PostAsync(loginUrl, content);
                 string loginResponseString = await response.Content.ReadAsStringAsync();
-                var loginJson = System.Web.Helpers.Json.Decode<Dictionary<string, string>>(loginResponseString);
+                var loginJson = System.Web.Helpers.Json.Decode(loginResponseString);
 
                 //Success
-                if (loginJson["session"] != null)
+                if (loginJson.session != null)
                 {
                     //Request nameurl JSON
-                    string sessionId = loginJson["session"];
-                    string userId = loginJson["user_id"];
+                    string sessionId = loginJson.session;
+                    int userId = loginJson.user_id;
                     postdata = new Dictionary<string, string>
                     {
                         {"session", sessionId},
-                        {"id", userId}
+                        {"id", userId.ToString()}
                     };
                     content = new FormUrlEncodedContent(postdata);
                     response = await client.PostAsync(nameUrl, content);
