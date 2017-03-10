@@ -6,6 +6,8 @@
     Layout = "Master.cshtml";
     var viewModel = Model.Content.As<Form>();
 }
+<link rel="stylesheet" type="text/css" href="~/css/questionaire-style.css" />
+
 <h2>
     @viewModel.Name
 </h2>
@@ -17,26 +19,36 @@
          @*Iterating all Questions*@ 
         @foreach (var question in viewModel.Questions)
         {
-            <fieldset>
-                <h5>
-                    @question.Question
-                </h5>
-                @{
-                    IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
-                    //Iterating all Answers to the current question
-                    foreach (var answer in answers)
-                    {
-                        //Differentiates whether it's a Radiobutton or a checkbox
-                        if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
-                        {
-                                <input type="radio" name="@question.Id" value="@answer.Id"/> @answer.Answer <br />
+            <fieldset>               
+                <div class="btn-group" style="display:block;" data-toggle="buttons">
+                    <div class="list-group">
+                        <div class="list-group-item questHeader">
+                            @question.Question
+                        </div>
+                        @{
+                            IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
+                            //Iterating all Answers to the current question
+                            foreach (var answer in answers)
+                            {
+                                //Differentiates whether it's a Radiobutton or a checkbox
+                                if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
+                                {
+                                    <label class="btn btn-primary customMenuItem">
+                                        <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                    </label>
+
+                                }
+                                else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
+                                {
+                                    <label class="btn btn-primary customMenuItem">
+                                        <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                    </label>                                  
+                                }
+                            }
                         }
-                        else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
-                        {
-                                <input type="checkbox" name="@question.Id" value="@answer.Id"/> @answer.Answer<br />
-                        }
-                    }
-                }
+                       
+                    </div>
+                </div>
             </fieldset>
             <br />
         }
