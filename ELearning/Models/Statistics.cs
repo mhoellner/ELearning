@@ -16,5 +16,7 @@ namespace ELearning.Models
 
         public int FormsFolder { get; set; }
         public string Title { get; set; }
+
+        public FormResultSerializable FormResults { get; set; }
     }
 }

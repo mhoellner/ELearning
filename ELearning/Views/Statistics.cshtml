@@ -2,12 +2,58 @@
 @using Our.Umbraco.Ditto
 @inherits UmbracoViewPage<ELearning.Models.Statistics>
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
     var folder = Umbraco.TypedContent(Model.FormsFolder).As<ELearning.Models.Overview>();
+    var sum = 0.0;
+    string id = Model.FormResults.Questions[0].QuestionId;
+    QuestionItem q = Umbraco.TypedContent(id).As<ELearning.Models.QuestionItem>();
+    string qs = q.Question.ToString().StripHtml();
+    //var firstQuestion = Umbraco.TypedContent(Model.FormResults.Questions[0].QuestionId).As<QuestionItem>();
 }
 
-<h2>@Model.Title</h2>
+<script type="text/javascript">
+    window.onload = function () {
+        var myData = [{
+                y: @Model.FormResults.Questions[0].Answers[0].TimesClicked,
+                label: @Model.FormResults.Questions[0].Answers[0].AnswerId.ToString()
+            },
+            {
+                y: @Model.FormResults.Questions[0].Answers[1].TimesClicked,
+                label: @Model.FormResults.Questions[0].Answers[1].AnswerId.ToString()
+            },
+            {
+                y: @Model.FormResults.Questions[0].Answers[2].TimesClicked,
+                label: @Model.FormResults.Questions[0].Answers[2].AnswerId.ToString()
+            }
+        ];
+        var chart = new CanvasJS.Chart("chartContainer",
+        {
+            animationEnabled: true,
+            axisY: {
+                title: "Times Clicked"
+            },
+            legend: {
+                verticalAlign: "bottom",
+                horizontalAlign: "center"
+            },
+            theme: "theme2",
+            data: [
 
+            {
+                type: "column",
+                showInLegend: true,
+                legendMarkerColor: "grey",
+                legendText: "BLA",
+                dataPoints: myData
+            }
+            ]
+        });
+
+        chart.render();
+    }
+</script>
+<script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h2>@Model.Title</h2>
 <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Wissenstest auswählen
@@ -19,3 +65,38 @@
         }
     </div>
 </div>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+
+<br/>
+RAW-DATA:
+<br />
+    FormID: @Model.FormResults.FormId
+    <br />
+    Resultcounter: @Model.FormResults.NumberOfResults
+    <br />
+    @foreach (int i in Model.FormResults.TestResults)
+    {
+        sum += i;
+        <text>@i </text>
+    }
+    <br />
+    Durchschnittlich erreichte Punkte: @{ var res = sum / Model.FormResults.NumberOfResults; } @res
+    <br />
+    @foreach (QuestionSerializable question in Model.FormResults.Questions)
+    {
+        <p>
+            QuestionID: @question.QuestionId
+            <br />
+            Type: @question.Type
+            <br />
+            <ul>
+                @foreach (AnswerSerializable answer in question.Answers)
+                {
+                    <li>
+                        AnswerID: @answer.AnswerId, IsCorrect: @answer.IsCorrect, TimesClicked: @answer.TimesClicked
+                    </li>
+                }
+            </ul>
+        </p>
+    }
