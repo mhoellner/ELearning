@@ -1,0 +1,21 @@
+﻿@using ELearning.Models
+@using Our.Umbraco.Ditto
+@inherits UmbracoViewPage<ELearning.Models.Statistics>
+@{
+	Layout = "Master.cshtml";
+    var folder = Umbraco.TypedContent(Model.FormsFolder).As<ELearning.Models.Overview>();
+}
+
+<h2>@Model.Title</h2>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Wissenstest auswählen
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @foreach (Form form in folder.Children.As<Form>())
+        {
+            <a class="dropdown-item" href="@Model.Content.UrlName&id=@form.Id">@form.Name</a>
+        }
+    </div>
+</div>
