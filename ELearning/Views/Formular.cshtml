@@ -6,7 +6,6 @@
     Layout = "Master.cshtml";
     var viewModel = Model.Content.As<Form>();
 }
-<link rel="stylesheet" type="text/css" href="~/css/questionaire-style.css" />
 
 <h2>
     @viewModel.Name
@@ -33,14 +32,14 @@
                                 //Differentiates whether it's a Radiobutton or a checkbox
                                 if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                                 {
-                                    <label class="btn btn-primary customMenuItem">
+                                    <label id="radioQuestion" class="btn btn-primary customBtn customMenuItem">
                                         <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
                                     </label>
 
                                 }
                                 else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
                                 {
-                                    <label class="btn btn-primary customMenuItem">
+                                    <label id="checkQuestion" class="btn btn-primary customBtn customMenuItem">
                                         <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
                                     </label>                                  
                                 }
