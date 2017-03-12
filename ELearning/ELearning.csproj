@@ -353,6 +353,8 @@
     <Content Include="Views\Homepage.cshtml" />
     <Content Include="Views\Formular.cshtml" />
     <Content Include="Views\Partials\LoginForm.cshtml" />
+    <Content Include="Views\Statistics.cshtml" />
+    <Content Include="Views\Partials\StatsCanvas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -390,17 +392,20 @@
   <ItemGroup>
     <Compile Include="Controller\FormResultController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\StatisticsController.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="Models\AbstractAnswer.cs" />
     <Compile Include="Models\CorrectAnswer.cs" />
     <Compile Include="Models\Form.cs" />
     <Compile Include="Models\FormResult.cs" />
+    <Compile Include="Models\FormResultSerializable.cs" />
     <Compile Include="Models\Homepage.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Overview.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\QuestionItem.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="Models\WrongAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

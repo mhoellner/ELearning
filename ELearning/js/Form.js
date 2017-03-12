@@ -24,10 +24,6 @@
     if (amountOfQuestionNotAnswered > 0) {
       var errorMessage = document.getElementById('formErrorMessage');
       errorMessage.className = 'alert alert-danger alert-dismissible';
-      // Bootstrap-Javascript usage
-      //errorMessage
-      //  .innerHTML =
-      //  '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
       if (amountOfQuestionNotAnswered === 1) {
         errorMessage.innerHTML = 'Eine Frage wurde nicht beantwortet.';
       } else {

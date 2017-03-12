@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using ELearning.Models;
+using Newtonsoft.Json;
 using Our.Umbraco.Ditto;
 using Umbraco.Web.Models;
 
@@ -11,50 +14,198 @@ namespace ELearning.Controller
     /// </summary>
     public class FormResultController : Umbraco.Web.Mvc.RenderMvcController
     {
+        private int _allCorrectAnswers;
+        private int _yourCorrectAnswers;
+        private string _formId;
+        private FormResultSerializable _json;
+        private string _jsonPath = "/formresults";
+        private Form _form;
+
         public override ActionResult Index(RenderModel model)
         {
-            int allCorrectAnswers = 0;
-            int yourCorrectAnswers = 0;
+            _allCorrectAnswers = 0;
+            _yourCorrectAnswers = 0;
 
             // POST-Arguments
-            string formId = Request.Form["formId"];
+            _formId = Request.Form["formId"];
             string[] args = Request.Form.ToString().Split('&');
-
+            
             //Get amount of all correct answers for the current form
-            Form form = Umbraco.TypedContent(formId).As<Form>();
-            foreach (QuestionItem question in form.Questions)
+            _form = Umbraco.TypedContent(_formId).As<Form>();
+
+            //Trying to create a json file
+            ReadJson();
+            _json.NumberOfResults++;
+
+            foreach (QuestionItem question in _form.Questions)
             {
-                allCorrectAnswers += question.Children.Count(c => c.DocumentTypeAlias == "correctAnswer");
+                _allCorrectAnswers += question.Children.Count(c => c.DocumentTypeAlias == "correctAnswer");
+            }
+            
+            CalculateAmountOfCorrectAnswers(args);
+
+            //Minimum for correct answers is 0
+            if (_yourCorrectAnswers < 0)
+            {
+                _yourCorrectAnswers = 0;
             }
 
-            //Get amount of correct answers in the current request
+            _json.TestResults.Add(_yourCorrectAnswers);
+            
+            SaveJson();
+
+            return View("~/Views/FormResult.cshtml", BuildModel());
+        }
+
+        /// <summary>
+        /// Calculate the amount of correct answers in the current POST-request
+        /// </summary>
+        /// <param name="args">the POST-args</param>
+        private void CalculateAmountOfCorrectAnswers(string[] args)
+        {
             for (int i = 1; i < args.Length; i++)
             {
                 string answerId = args[i].Split('=')[1];
                 string docAlias = Umbraco.TypedContent(answerId).DocumentTypeAlias;
                 if (docAlias == "correctAnswer")
                 {
-                    yourCorrectAnswers++;
+                    _yourCorrectAnswers++;
                 }
                 else if (docAlias == "wrongAnswer")
                 {
-                    yourCorrectAnswers--;
+                    _yourCorrectAnswers--;
+                }
+                IncrementAnswerTimesClicked(answerId);
+            }
+        }
+
+        private void IncrementAnswerTimesClicked(string id)
+        {
+            foreach (QuestionSerializable question in _json.Questions)
+            {
+                if (question.Answers.Any(x => x.AnswerId == id))
+                {
+                    question.Answers.First(x => x.AnswerId == id).TimesClicked++;
                 }
             }
-            //Minimum for correct answers is 0
-            if (yourCorrectAnswers < 0)
+        }
+
+        /// <summary>
+        /// Creates a Model to show in the View
+        /// </summary>
+        /// <returns>The freshly build model</returns>
+        private FormResult BuildModel()
+        {
+            return new FormResult(Umbraco.AssignedContentItem)
             {
-                yourCorrectAnswers = 0;
-            }
-            //Build a Model for the View.
-            var formResult = new FormResult(Umbraco.AssignedContentItem)
-            {
-                FormId = int.Parse(formId),
-                YourCorrectAnswers = yourCorrectAnswers,
-                AllCorrectAnswers = allCorrectAnswers,
+                FormId = int.Parse(_formId),
+                YourCorrectAnswers = _yourCorrectAnswers,
+                AllCorrectAnswers = _allCorrectAnswers,
                 FormTitle = "Auswertung"
             };
-            return View("~/Views/FormResult.cshtml", (object) formResult);
+        }
+
+        /// <summary>
+        /// The Path to the json file
+        /// </summary>
+        /// <returns>path</returns>
+        private string PathWithFilename()
+        {
+            return _jsonPath + "/" + _formId + ".json";
+        }
+
+        /// <summary>
+        /// Read json from file if it exists, otherwise create a new json
+        /// </summary>
+        private void ReadJson()
+        {
+            if (JsonFileExists())
+            {
+                //Open file
+                using (StreamReader reader = new StreamReader(PathWithFilename()))
+                {
+                    string text = reader.ReadToEnd();
+                    _json = JsonConvert.DeserializeObject<FormResultSerializable>(text);
+                }
+            }
+            else
+            {
+                InitializeJson();
+            }
+        }
+
+        /// <summary>
+        /// Checks, if the file already exists
+        /// </summary>
+        /// <returns></returns>
+        private bool JsonFileExists()
+        {
+            if (Directory.Exists(_jsonPath) && System.IO.File.Exists(PathWithFilename()))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Saves the json to a file
+        /// </summary>
+        private void SaveJson()
+        {
+            Directory.CreateDirectory(_jsonPath);
+            using (StreamWriter writer = new StreamWriter(PathWithFilename()))
+            {
+                writer.Write(JsonConvert.SerializeObject(_json, Formatting.Indented));
+            }
+        }
+
+        /// <summary>
+        /// Creates a new json object
+        /// </summary>
+        private void InitializeJson()
+        {
+            _json = new FormResultSerializable
+            {
+                FormId = _formId,
+                NumberOfResults = 0,
+                TestResults = new List<int>(),
+                Questions = new QuestionSerializable[_form.Questions.Count()]
+            };
+
+            int questionCounter = 0;
+            foreach (QuestionItem formQuestion in _form.Questions)
+            {
+                _json.Questions[questionCounter] = new QuestionSerializable
+                {
+                    QuestionId = formQuestion.Id.ToString(),
+                    Type = formQuestion.DocumentTypeAlias,
+                    Answers = new AnswerSerializable[formQuestion.Children.Count()]
+                };
+
+                int answerCounter = 0;
+                foreach (AbstractAnswer answer in formQuestion.Children.As<AbstractAnswer>())
+                {
+                    bool isCorrect = false;
+
+                    if (answer.DocumentTypeAlias == "correctAnswer")
+                    {
+                        isCorrect = true;
+                    }
+                    else if (answer.DocumentTypeAlias == "wrongAnswer")
+                    {
+                        isCorrect = false;
+                    }
+                    _json.Questions[questionCounter].Answers[answerCounter] = new AnswerSerializable
+                    {
+                        TimesClicked = 0,
+                        IsCorrect = isCorrect,
+                        AnswerId = answer.Id.ToString()
+                    };
+
+                    answerCounter++;
+                }
+                questionCounter++;
+            }
         }
     }
 }

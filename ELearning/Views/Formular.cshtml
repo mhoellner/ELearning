@@ -15,7 +15,7 @@
 {
     <form action="/auswertung" method="post" id="questionForm">
         <input type="hidden" name="formId" value="@viewModel.Id" />
-         @*Iterating all Questions*@ 
+        @*Iterating all Questions*@ 
         @foreach (var question in viewModel.Questions)
         {
             <fieldset>               
@@ -56,5 +56,8 @@
             <script src="~/js/Form.js"></script>
         </div>
         <button type="submit" class="btn btn-secondary background-red">Fragebogen zur Korrektur geben</button>
+    </form>
+    <form action="/statistik" method="post">
+        <button type="submit" class="btn btn-secondary background-red" name="id" value="@viewModel.Id">Statistik betrachten</button>
     </form>
 }

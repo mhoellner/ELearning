@@ -45,8 +45,6 @@ function getCookie(cname) {
     return "";
 }
 
-
-
 function LoginAktualisieren() {
     
     if (document.cookie != "") {
@@ -79,5 +77,3 @@ function Logout() {
 }
 
 LoginAktualisieren();
-
-    
