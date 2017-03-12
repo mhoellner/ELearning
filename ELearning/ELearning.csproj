@@ -355,6 +355,7 @@
     <Content Include="Views\Formular.cshtml" />
     <Content Include="Views\Partials\LoginForm.cshtml" />
     <Content Include="Views\Statistics.cshtml" />
+    <Content Include="Views\Partials\StatsCanvas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
