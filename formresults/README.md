@@ -1,2 +1,2 @@
-Diese Dateien sind Beispiele die für die Statistiken verwendet werden.<br/>
-Diese müssen unter C:\formresults\*.json liegen, damit das funktioniert.
+Diese Dateien sind Beispiele die fÃ¼r die Statistiken verwendet werden.<br/>
+Diese mÃ¼ssen unter C:\formresults\\*.json liegen, damit das funktioniert.
