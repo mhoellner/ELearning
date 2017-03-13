@@ -3,17 +3,25 @@
 @inherits UmbracoTemplatePage
 @{
     // Get RSS-Feed
-    var r = XmlReader.Create("http://www.it.hwr-berlin.de/de/?no_cache=1&type=100");
-    var items = SyndicationFeed.Load(r);
-    r.Close();
+    SyndicationFeed items;
+    try
+    {
+        var r = XmlReader.Create("http://www.it.hwr-berlin.de/de/?no_cache=1&type=100");
+        items = SyndicationFeed.Load(r);
+        r.Close();
+    }
+    catch (Exception e)
+    {
+        items = null;
+    }
 }
 
-@if (items != null)
-{
-    <div class="boxes boxes-grey">
-        <h2>
-            <i class="fa fa-rss"></i> IT News
-        </h2>
+<div class="boxes boxes-grey">
+    <h2>
+        <i class="fa fa-rss"></i> IT News
+    </h2>
+    @if (items != null)
+    {
         <ul class="nav flex-column">
             @* Get the first five feeds to display *@
             @foreach (SyndicationItem item in items.Items.Take(5))
@@ -31,7 +39,11 @@
                 </a>
             </li>
         </ul>
-
-
-    </div>
-}
+    }
+    else
+    {
+        <p>
+            RSS-Feed konnte nicht geladen werden.
+        </p>
+    }
+</div>
