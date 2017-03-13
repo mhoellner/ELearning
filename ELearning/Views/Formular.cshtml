@@ -35,21 +35,25 @@
                                         //Differentiates whether it's a Radiobutton or a checkbox
                                         if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
                                         {
-                                            <label id="radioQuestion" class="btn btn-primary customBtn customMenuItem">
-                                                <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
-                                            </label>
+                                            <div class="radioQuestionContainer">
+                                                <label id="radioQuestion" class="btn btn-primary customBtn customMenuItem radioQuestion">
+                                                    <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                                </label>
+                                            </div>
 
-                                        }
-                                        else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
-                                        {
-                                            <label id="checkQuestion" class="btn btn-primary customBtn customMenuItem">
-                                                <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
-                                            </label>
-                                        }
-                                    }
-                                }
+                                                }
+                                                else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
+                                                {
+                                                <div class="checkQuestionContainer">
+                                                    <label id="checkQuestion" class="btn btn-primary customBtn customMenuItem checkQuestion">
+                                                        <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                                    </label>
+                                                </div>
+                                                }
+                                                }
+                                                }
 
-                            </div>
+                                            </div>
                         </div>
                     </fieldset>
                     <br />

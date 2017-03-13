@@ -2,6 +2,13 @@
     border-top: 4px solid #D92425;
 }
 
+.align-right {
+    position:relative;
+    right:0;
+    text-align:right;
+    vertical-align:middle;
+}
+
 .background-red {
     background-color: #d92425;
     color: #f5f5f5;
@@ -22,6 +29,10 @@
     border-radius: 3px;
 }
 
+.boxes .footer {
+    margin-top: 10px;
+}
+
 .btn-grey {
     background-color: #f5f5f5;
     margin-bottom: 4px;
@@ -39,9 +50,6 @@
     color: #f5f5f5;
 }
 
-.boxes .footer {
-    margin-top: 10px;
-}
 
 .input-group.name {
     margin-bottom: 10px;
@@ -97,57 +105,65 @@
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.user-loggedIn{
+
+.user-loggedIn {
     color: #000000;
-    display:none;
+    display: none;
 }
+
+/* Fragebogen Section*/
+
 .customMenuItem {
-        background-color: White;
-        color: darkslategray;
-        height: auto;
-        padding: 8px;
-        margin: 0px !important;
-        border: 1px solid gray;
-        text-align: left;
-        width: 100%;
-    }
+    background-color: White;
+    color: darkslategray;
+    height: auto;
+    padding: 8px;
+    margin: 0px !important;
+    border: 1px solid gray;
+    text-align: left;
+    width: 100%;
+}
 
     .customMenuItem:hover {
-            background-color: #D92425;
-            color: white;
-            border: 1px solid gray;
-        }
-    #radioQuestion.active {
-        background-color: #EDEDED !important;
-        color: black !important;
-        
+        background-color: #D92425;
+        color: white;
+        border: 1px solid gray;
     }
 
-     #checkQuestion.active {
-        background-color: #EDEDED !important;
-        color: black !important;
-        
-    }
-     #radioQuestion.focus {
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
-    }
-        #checkQuestion.focus {
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
-    }
-    .questHeader {
-        background-color: #6B6F73;
-        color: white;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-    .customMenuItem:last-child {
-        border-bottom-right-radius: .25rem;
-        border-bottom-left-radius: .25rem;
-    }
-    .customBtn {
-        border-radius: 0px;
-    }    
+.radioQuestionContainer > .active {
+    background-color: #EDEDED !important;
+    color: black !important;
+}
+
+.checkQuestionContainer > .active {
+    background-color: #EDEDED !important;
+    color: black !important;
+}
+
+.radioQuestionContainer > .focus {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.checkQuestionContainer > .focus {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.questHeader {
+    background-color: #6B6F73;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.customMenuItem:last-child {
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.customBtn {
+    border-radius: 0px;
+}

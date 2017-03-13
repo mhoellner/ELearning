@@ -20,7 +20,7 @@ function login() {
             {
                 //Name und/oderPasswort war falsch
                 document.getElementById('password').value = "";
-                alert("Ihr Benutzername oder Ihr Passwort ist nicht gültig. Versuchen sie es erneut");
+                alert("Ihr Benutzername oder Ihr Passwort ist nicht gültig. Versuchen sie es erneut.");
             }
 
         } else {

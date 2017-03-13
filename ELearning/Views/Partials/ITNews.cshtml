@@ -28,7 +28,7 @@
             @foreach (SyndicationItem item in items.Items.Take(3))
             {
                 <li class="nav-item">
-                    <a onclick="this.target = '_blank'" href="@item.Links.FirstOrDefault().GetAbsoluteUri()" class="btn btn-secondary btn-grey btn-redhover">
+                    <a onclick="this.target = '_blank'" href="@item.Links.FirstOrDefault().GetAbsoluteUri()" class="nav-link btn btn-secondary btn-grey btn-redhover">
                         @item.Title.Text
                     </a>
                 </li>
