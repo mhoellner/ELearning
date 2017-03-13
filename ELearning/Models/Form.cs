@@ -7,7 +7,7 @@ using Umbraco.Web;
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Form-Views.
+    /// Model for all Forms
     /// </summary>
     public class Form : Item
     {

@@ -3,7 +3,7 @@
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Profile-Views.
+    /// Model for all Profiles
     /// </summary>
     public class Person : Item
     {

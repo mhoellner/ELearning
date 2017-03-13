@@ -338,10 +338,8 @@
     <Content Include="Config\applications.config" />
     <Content Include="Config\404handlers.config" />
     <Content Include="Views\Master.cshtml" />
-    <Content Include="Views\Partials\BottomNavigation.cshtml" />
     <Content Include="Views\Partials\Grid\Fanoe.cshtml" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
-    <Content Include="Views\TextPage.cshtml" />
     <Content Include="Views\Partials\ITNews.cshtml" />
     <Content Include="Views\Partials\LeftNavigation.cshtml" />
     <Content Include="Views\Video.cshtml" />

@@ -4,6 +4,9 @@ using Umbraco.Web.Models;
 
 namespace ELearning.Models
 {
+    /// <summary>
+    /// Model for all Statistics
+    /// </summary>
     public class Statistics : RenderModel
     {
         public Statistics(IPublishedContent content, CultureInfo culture) : base(content, culture)

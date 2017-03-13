@@ -7,6 +7,9 @@ using Umbraco.Web.Models;
 
 namespace ELearning.Controller
 {
+    /// <summary>
+    /// RenderMvcControllers are auto-routed
+    /// </summary>
     public class StatisticsController : Umbraco.Web.Mvc.RenderMvcController
     {
         private string _id;
@@ -14,10 +17,8 @@ namespace ELearning.Controller
         private string _jsonPath = "/formresults";
 
         /// <summary>
-        /// Used when rendering documents of Type Statistics
+        /// Executes, when rendering documents of Type Statistics
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
         public override ActionResult Index(RenderModel model)
         {
             _id = Request.Form["id"];
@@ -30,7 +31,7 @@ namespace ELearning.Controller
         /// Workaround to use Ditto
         /// </summary>
         /// <param name="model">The current Rendermodel</param>
-        /// <returns></returns>
+        /// <returns>the populated model</returns>
         private Statistics BuildModel(RenderModel model)
         {
             var viewmodel = new Statistics(Umbraco.AssignedContentItem)
@@ -71,7 +72,7 @@ namespace ELearning.Controller
         /// <summary>
         /// Checks, if the file already exists
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true, if file exists</returns>
         private bool JsonFileExists()
         {
             if (Directory.Exists(_jsonPath) && System.IO.File.Exists(PathWithFilename()))

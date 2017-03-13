@@ -7,6 +7,7 @@
     var viewModel = Model.Content.As<Person>();
 }
 
+@* Renders the Profile *@
 @if (viewModel.ProfilePic != null)
 {
     var image = Umbraco.Media(viewModel.ProfilePic);

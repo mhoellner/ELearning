@@ -1,7 +1,7 @@
 ﻿namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Answers.
+    /// Model for all Answers
     /// </summary>
     public class AnswerItem : Item
     {

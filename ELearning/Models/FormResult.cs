@@ -5,7 +5,7 @@ using Umbraco.Web.Models;
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Form-Result-Views.
+    /// Model for all FormResults
     /// </summary>
     public class FormResult : RenderModel
     {
@@ -16,8 +16,7 @@ namespace ELearning.Models
         public FormResult(IPublishedContent content) : base(content)
         {
         }
-
-
+        
         public int FormId { get; set; }
         public string FormTitle { get; set; }
         public int YourCorrectAnswers { get; set; }

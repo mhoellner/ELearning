@@ -3,7 +3,7 @@
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Homepage-View.
+    /// Model for all Homepages
     /// </summary>
     public class Homepage : Item
     {

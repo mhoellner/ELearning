@@ -3,7 +3,7 @@
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Questions
+    /// Model for all Questions
     /// </summary>
     public class QuestionItem : Item
     {

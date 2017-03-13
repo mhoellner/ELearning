@@ -4,6 +4,8 @@
 	Layout = "Master.cshtml";
     var viewModel = Model.Content.As<ELearning.Models.Overview>();
 }
+
+@* Render the Overview of different Types *@
 <h2>@viewModel.Name</h2>
 <ul class="nav flex-column">
     @foreach (var child in viewModel.Children.OrderBy(t => t.Name))

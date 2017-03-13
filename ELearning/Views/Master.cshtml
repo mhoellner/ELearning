@@ -8,6 +8,7 @@
     var root = ItemExtensions.RootItem();
 }
 
+@* Renders everytime, acting as the base of the website, containing all, otherwise doubled, Views *@
 <!DOCTYPE html>
 <html dir="ltr" lang="de" xml:lang="de">
 <head>
@@ -15,14 +16,14 @@
     <link rel="shortcut icon" href="http://moodle.hwr-berlin.de/theme/image.php/lambda/theme/1472726786/favicon" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="elearning, ELearning@HWR" />
+    @* External CSS-Libraries *@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    @* Custom CSS *@
     <link rel="stylesheet" type="text/css" href="~/css/video.css" />
     <link rel="stylesheet" type="text/css" href="~/css/master-style.css" />
-
-
+    @* External JS-Libraries *@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -31,9 +32,7 @@
 <body id="" class="wrapper">
     @Html.Partial("~/Views/Partials/MainNavigation.cshtml")
     @Html.Partial("~/Views/Partials/Breadcrumb.cshtml", new BreadcrumbProvider(viewModel.Id).BreadcrumbItems)
-
     <div class="container">
-
         <div class="row">
             <div class="col-md-3">
                 @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
@@ -47,8 +46,6 @@
                 @Html.Partial("~/Views/Partials/ITNews.cshtml")
             </div>
         </div>
-
     </div>
-        @*@{ Html.RenderPartial("BottomNavigation"); }*@
 </body>
 </html>

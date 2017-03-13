@@ -6,7 +6,7 @@ using Umbraco.Core;
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Video-Views.
+    /// Model for all Videos
     /// </summary>
     public class Video : Item
     {

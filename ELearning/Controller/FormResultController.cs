@@ -10,7 +10,7 @@ using Umbraco.Web.Models;
 namespace ELearning.Controller
 {
     /// <summary>
-    /// Executes for all contents with the FormResult-Template.
+    /// RenderMvcControllers are auto-routed
     /// </summary>
     public class FormResultController : Umbraco.Web.Mvc.RenderMvcController
     {
@@ -21,6 +21,9 @@ namespace ELearning.Controller
         private string _jsonPath = "/formresults";
         private Form _form;
 
+        /// <summary>
+        /// Executes, when a document of Type FormResult has to render.
+        /// </summary>
         public override ActionResult Index(RenderModel model)
         {
             _allCorrectAnswers = 0;
@@ -79,6 +82,10 @@ namespace ELearning.Controller
             }
         }
 
+        /// <summary>
+        /// Increments the Amount of the Clicks on an answer
+        /// </summary>
+        /// <param name="id">The answerID</param>
         private void IncrementAnswerTimesClicked(string id)
         {
             foreach (QuestionSerializable question in _json.Questions)

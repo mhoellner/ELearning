@@ -3,7 +3,7 @@
 namespace ELearning.Models
 {
     /// <summary>
-    /// Model for our Overview-Views.
+    /// Model for all Overview
     /// </summary>
     public class Overview : Item
     {
