@@ -37,14 +37,7 @@
             <div class="col-md-3">
                 @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
             </div>
-            <div class="col-md-6">
-                <div class="boxes">
-                    @RenderBody()
-                </div>
-            </div>
-            <div class="col-md-3">
-                @Html.Partial("~/Views/Partials/ITNews.cshtml")
-            </div>
+            @RenderBody()
         </div>
     </div>
 </body>

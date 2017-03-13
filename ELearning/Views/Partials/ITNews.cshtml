@@ -24,8 +24,8 @@
     @if (items != null)
     {
         <ul class="nav flex-column">
-            @* Get the first five feeds to display *@
-            @foreach (SyndicationItem item in items.Items.Take(5))
+            @* Get the first three feeds to display *@
+            @foreach (SyndicationItem item in items.Items.Take(3))
             {
                 <li class="nav-item">
                     <a onclick="this.target = '_blank'" href="@item.Links.FirstOrDefault().GetAbsoluteUri()" class="btn btn-secondary btn-grey btn-redhover">

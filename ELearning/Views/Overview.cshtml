@@ -1,19 +1,23 @@
 ﻿@using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
     var viewModel = Model.Content.As<ELearning.Models.Overview>();
 }
 
 @* Render the Overview of different Types *@
-<h2>@viewModel.Name</h2>
-<ul class="nav flex-column">
-    @foreach (var child in viewModel.Children.OrderBy(t => t.Name))
-    {
-        <li class="nav-item">
-            <a title="@child.Url" href="@child.Url" class="nav-link btn btn-secondary btn-left btn-redhover">
-                @child.Name
-            </a>
-        </li>
-    }
-</ul>
+<div class="col-md-9">
+    <div class="boxes">
+        <h2>@viewModel.Name</h2>
+        <ul class="nav flex-column">
+            @foreach (var child in viewModel.Children.OrderBy(t => t.Name))
+            {
+                <li class="nav-item">
+                    <a title="@child.Url" href="@child.Url" class="nav-link btn btn-secondary btn-left btn-redhover">
+                        @child.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -8,57 +8,61 @@
 }
 
 @* Renders a form *@
-<h2>
-    @viewModel.Name
-</h2>
-@viewModel.Introduction
-@if (viewModel.Questions.Any())
-{
-    <form action="/auswertung" method="post" id="questionForm">
-        <input type="hidden" name="formId" value="@viewModel.Id" />
-        @*Iterating all Questions*@ 
-        @foreach (var question in viewModel.Questions)
+<div class="col-md-9">
+    <div class="boxes">
+        <h2>
+            @viewModel.Name
+        </h2>
+        @viewModel.Introduction
+        @if (viewModel.Questions.Any())
         {
-            <fieldset>               
-                <div class="btn-group" style="display:block;" data-toggle="buttons">
-                    <div class="list-group">
-                        <div class="list-group-item questHeader">
-                            @question.Question
-                        </div>
-                        @{
-                            IEnumerable<AnswerItem> answers = question.Children.As<AnswerItem>();
-                            //Iterating all Answers to the current question
-                            foreach (var answer in answers)
-                            {
-                                //Differentiates whether it's a Radiobutton or a checkbox
-                                if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
-                                {
-                                    <label id="radioQuestion" class="btn btn-primary customBtn customMenuItem">
-                                        <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
-                                    </label>
+            <form action="/auswertung" method="post" id="questionForm">
+                <input type="hidden" name="formId" value="@viewModel.Id" />
+                @*Iterating all Questions*@
+                @foreach (var question in viewModel.Questions)
+                {
+                    <fieldset>
+                        <div class="btn-group" style="display:block;" data-toggle="buttons">
+                            <div class="list-group">
+                                <div class="list-group-item questHeader">
+                                    @question.Question
+                                </div>
+                                @{
+                                    IEnumerable<AnswerItem> answers = question.Children.As<AnswerItem>();
+                                    //Iterating all Answers to the current question
+                                    foreach (var answer in answers)
+                                    {
+                                        //Differentiates whether it's a Radiobutton or a checkbox
+                                        if (question.DocumentTypeAlias == Templates.SingleChoiceQuestionTemplate)
+                                        {
+                                            <label id="radioQuestion" class="btn btn-primary customBtn customMenuItem">
+                                                <input type="radio" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                            </label>
 
+                                        }
+                                        else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
+                                        {
+                                            <label id="checkQuestion" class="btn btn-primary customBtn customMenuItem">
+                                                <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
+                                            </label>
+                                        }
+                                    }
                                 }
-                                else if (question.DocumentTypeAlias == Templates.MultipleChoiceQuestionTemplate)
-                                {
-                                    <label id="checkQuestion" class="btn btn-primary customBtn customMenuItem">
-                                        <input type="checkbox" name="@question.Id" value="@answer.Id"> @answer.Answer
-                                    </label>                                  
-                                }
-                            }
-                        }
-                       
-                    </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                }
+                <br />
+                <div id="formErrorMessage" role="alert">
+                    <script src="~/js/Form.js"></script>
                 </div>
-            </fieldset>
-            <br />
+                <button type="submit" class="btn btn-secondary background-red">Fragebogen zur Korrektur geben</button>
+            </form>
+            <form action="/statistik" method="post">
+                <button type="submit" class="btn btn-secondary background-red" name="id" value="@viewModel.Id">Statistik betrachten</button>
+            </form>
         }
-        <br/>
-        <div id="formErrorMessage" role="alert">
-            <script src="~/js/Form.js"></script>
-        </div>
-        <button type="submit" class="btn btn-secondary background-red">Fragebogen zur Korrektur geben</button>
-    </form>
-    <form action="/statistik" method="post">
-        <button type="submit" class="btn btn-secondary background-red" name="id" value="@viewModel.Id">Statistik betrachten</button>
-    </form>
-}
+    </div>
+</div>

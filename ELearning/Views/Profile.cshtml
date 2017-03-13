@@ -8,21 +8,25 @@
 }
 
 @* Renders the Profile *@
-@if (viewModel.ProfilePic != null)
-{
-    var image = Umbraco.Media(viewModel.ProfilePic);
-    <img src="@image.Url" alt="@image.Name" style="width:300px;height:300px" />
-}
-<p>
-    <br/>
-    <b>Profilinformationen von @viewModel.Name:</b>
-</p>
-<p>
-    Beigetreten am @viewModel.CreateDate.ToString("dd. MMMM yyyy", new CultureInfo("de"))
-</p>
-<hr/>
-@viewModel.ProfileDescription
-<hr/>
-<p>
-    Zuletzt geändert am @viewModel.UpdateDate.ToString("dd. MMMM yyyy", new CultureInfo("de")) um @viewModel.UpdateDate.ToString("HH:mm", new CultureInfo("de"))
-</p>
+<div class="col-md-9">
+    <div class="boxes">
+        @if (viewModel.ProfilePic != null)
+        {
+            var image = Umbraco.Media(viewModel.ProfilePic);
+            <img src="@image.Url" alt="@image.Name" style="width:300px;height:300px" />
+        }
+        <p>
+            <br />
+            <b>Profilinformationen von @viewModel.Name:</b>
+        </p>
+        <p>
+            Beigetreten am @viewModel.CreateDate.ToString("dd. MMMM yyyy", new CultureInfo("de"))
+        </p>
+        <hr />
+        @viewModel.ProfileDescription
+        <hr />
+        <p>
+            Zuletzt geändert am @viewModel.UpdateDate.ToString("dd. MMMM yyyy", new CultureInfo("de")) um @viewModel.UpdateDate.ToString("HH:mm", new CultureInfo("de"))
+        </p>
+    </div>
+</div>

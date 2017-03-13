@@ -7,36 +7,40 @@
 }
 
 @* Renders the Statistics for a form *@
-@if (Model.FormResults != null)
-{
-    var typedForm = Umbraco.TypedContent(Model.FormResults.FormId).As<ELearning.Models.Form>();
-    <h2>Statistik zum Wissenstest:<br />@typedForm.Name</h2>
-}
-else
-{
-    <h2>Wähle einen Wissenstest</h2>
-}
-@* Dropdown to choose different forms *@
-<form method="post">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Wissenstest auswählen
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            @foreach (Form form in folder.Children.As<Form>())
+<div class="col-md-9">
+    <div class="boxes">
+        @if (Model.FormResults != null)
+        {
+            var typedForm = Umbraco.TypedContent(Model.FormResults.FormId).As<ELearning.Models.Form>();
+            <h2>Statistik zum Wissenstest:<br />@typedForm.Name</h2>
+        }
+        else
+        {
+            <h2>Wähle einen Wissenstest</h2>
+        }
+        @* Dropdown to choose different forms *@
+        <form method="post">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Wissenstest auswählen
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (Form form in folder.Children.As<Form>())
+                    {
+                        <button class="dropdown-item" type="submit" name="id" value="@form.Id">@form.Name</button>
+                    }
+                </div>
+            </div>
+        </form>
+        @if (Model.FormResults != null)
+        {
+            <br />
+            <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+            foreach (QuestionSerializable qus in Model.FormResults.Questions)
             {
-                <button class="dropdown-item" type="submit" name="id" value="@form.Id">@form.Name</button>
+                @Html.Partial("~/Views/Partials/StatsCanvas.cshtml", qus)
+                <br />
             }
-        </div>
+        }
     </div>
-</form>
-@if (Model.FormResults != null)
-{
-    <br />
-    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    foreach (QuestionSerializable qus in Model.FormResults.Questions)
-    {
-        @Html.Partial("~/Views/Partials/StatsCanvas.cshtml", qus)
-        <br />
-    }
-}
+</div>

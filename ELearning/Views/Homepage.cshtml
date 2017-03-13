@@ -1,11 +1,19 @@
 ﻿@using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 @{
-  Layout = "Master.cshtml";
-  var viewModel = Model.Content.As<ELearning.Models.Homepage>();
+    Layout = "Master.cshtml";
+    var viewModel = Model.Content.As<ELearning.Models.Homepage>();
 }
 @* Renders the Homepage *@
-<h3 class="bx-heading">
-    @viewModel.SiteTitle
-</h3>
-@viewModel.SiteDescription
+<div class="col-md-6">
+    <div class="boxes">
+        <h3 class="bx-heading">
+            @viewModel.SiteTitle
+        </h3>
+        @viewModel.SiteDescription
+    </div>
+</div>
+
+<div class="col-md-3">
+    @Html.Partial("~/Views/Partials/ITNews.cshtml")
+</div>

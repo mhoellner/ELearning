@@ -7,103 +7,107 @@
 }
 
 @* Renders the Module *@
-<h2>
-    @viewModel.Name
-</h2>
-@viewModel.Description
+<div class="col-md-9">
+    <div class="boxes">
+        <h2>
+            @viewModel.Name
+        </h2>
+        @viewModel.Description
 
-@*Accordion for Videos, Forms and Profiles*@
-<div id="accordion" role="tablist" aria-multiselectable="true">
-    @*Video-Tab*@
-    <div class="card">
-        <div class="card-header background-grey" role="tab" id="headingOne">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Zugehörige Lerninhalte <span class="badge badge-danger background-red">@viewModel.Videos.Count()</span>
-                </a>
-            </h5>
-        </div>
-        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-            <div class="card-block">
-                @if (viewModel.Videos.Any())
-                {
-                    <ul>
-                        @foreach (var video in viewModel.Videos)
+        @*Accordion for Videos, Forms and Profiles*@
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+            @*Video-Tab*@
+            <div class="card">
+                <div class="card-header background-grey" role="tab" id="headingOne">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Zugehörige Lerninhalte <span class="badge badge-danger background-red">@viewModel.Videos.Count()</span>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-block">
+                        @if (viewModel.Videos.Any())
                         {
-                            <li>
-                                <a href="@video.Url">@video.Name</a>
-                            </li>
+                            <ul>
+                                @foreach (var video in viewModel.Videos)
+                                {
+                                    <li>
+                                        <a href="@video.Url">@video.Name</a>
+                                    </li>
+                                }
+                            </ul>
                         }
-                    </ul>
-                }
-                else
-                {
-                    <p>
-                        Derzeit sind keine Lerninhalte in diesem Modul hinterlegt.
-                    </p>
-                }
+                        else
+                        {
+                            <p>
+                                Derzeit sind keine Lerninhalte in diesem Modul hinterlegt.
+                            </p>
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @*Form-Tab*@
-    <div class="card">
-        <div class="card-header background-grey" role="tab" id="headingTwo">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Zugehörige Wissenstests <span class="badge badge-danger background-red">@viewModel.Forms.Count()</span>
-                </a>
-            </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-            <div class="card-block">
-                @if (viewModel.Forms.Any())
-                {
-                    <ul>
-                        @foreach (var form in viewModel.Forms)
+            @*Form-Tab*@
+            <div class="card">
+                <div class="card-header background-grey" role="tab" id="headingTwo">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Zugehörige Wissenstests <span class="badge badge-danger background-red">@viewModel.Forms.Count()</span>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="card-block">
+                        @if (viewModel.Forms.Any())
                         {
-                            <li>
-                                <a href="@form.Url">@form.Name</a>
-                            </li>
+                            <ul>
+                                @foreach (var form in viewModel.Forms)
+                                {
+                                    <li>
+                                        <a href="@form.Url">@form.Name</a>
+                                    </li>
+                                }
+                            </ul>
                         }
-                    </ul>
-                }
-                else
-                {
-                    <p>
-                        Derzeit sind keine Wissenstests in diesem Modul hinterlegt.
-                    </p>
-                }
+                        else
+                        {
+                            <p>
+                                Derzeit sind keine Wissenstests in diesem Modul hinterlegt.
+                            </p>
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    @*Profile-Tab*@
-    <div class="card">
-        <div class="card-header background-grey" role="tab" id="headingThree">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    Ansprechpartner <span class="badge badge-danger background-red">@viewModel.Users.Count()</span>
-                </a>
-            </h5>
-        </div>
-        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-            <div class="card-block">
-                @if (viewModel.Users.Any())
-                {
-                    <ul>
-                        @foreach (var user in viewModel.Users)
+            @*Profile-Tab*@
+            <div class="card">
+                <div class="card-header background-grey" role="tab" id="headingThree">
+                    <h5 class="mb-0">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            Ansprechpartner <span class="badge badge-danger background-red">@viewModel.Users.Count()</span>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="card-block">
+                        @if (viewModel.Users.Any())
                         {
-                            <li>
-                                <a href="@user.Url">@user.Name</a>
-                            </li>
+                            <ul>
+                                @foreach (var user in viewModel.Users)
+                                {
+                                    <li>
+                                        <a href="@user.Url">@user.Name</a>
+                                    </li>
+                                }
+                            </ul>
                         }
-                    </ul>
-                }
-                else
-                {
-                    <p>
-                        Derzeit sind keine Ansprechpartner in diesem Modul hinterlegt.
-                    </p>
-                }
+                        else
+                        {
+                            <p>
+                                Derzeit sind keine Ansprechpartner in diesem Modul hinterlegt.
+                            </p>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
