@@ -1,10 +1,13 @@
-﻿namespace ELearning.Models
+﻿using Our.Umbraco.Ditto;
+
+namespace ELearning.Models
 {
     /// <summary>
     /// Model for our Overview-Views.
     /// </summary>
     public class Overview : Item
     {
-        public bool ShowInBreadcrumb { get; set; }
+        [UmbracoProperty("ShowInBreadcrumb")]
+        public bool ShowInNavigation { get; set; }
     }
 }

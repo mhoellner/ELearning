@@ -4,7 +4,7 @@
 @{
     var helper = new UmbracoHelper(UmbracoContext.Current);
     var typedQuestion = helper.TypedContent(Model.QuestionId).As<QuestionItem>();
-    List<AbstractAnswer> typedAnswers = helper.TypedContent(Model.Answers.Select(x => x.AnswerId)).As<AbstractAnswer>().ToList();
+    List<AnswerItem> typedAnswers = helper.TypedContent(Model.Answers.Select(x => x.AnswerId)).As<AnswerItem>().ToList();
     string data = "data" + Model.QuestionId;
     string container = "chartContainer" + Model.QuestionId;
     string chartVar = "chart" + Model.QuestionId;

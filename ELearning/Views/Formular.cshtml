@@ -25,7 +25,7 @@
                             @question.Question
                         </div>
                         @{
-                            IEnumerable<AbstractAnswer> answers = question.Children.As<AbstractAnswer>();
+                            IEnumerable<AnswerItem> answers = question.Children.As<AnswerItem>();
                             //Iterating all Answers to the current question
                             foreach (var answer in answers)
                             {

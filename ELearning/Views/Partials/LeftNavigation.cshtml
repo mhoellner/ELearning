@@ -17,7 +17,7 @@
             }
             @foreach (var overview in overviews)
             {
-                if (overview.ShowInBreadcrumb)
+                if (overview.ShowInNavigation)
                 {
                     <li class="nav-item">
                         <a title="@overview.Name" href="@overview.Url" class="nav-link btn btn-secondary btn-left btn-redhover btn-grey">

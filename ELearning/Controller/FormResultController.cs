@@ -183,7 +183,7 @@ namespace ELearning.Controller
                 };
 
                 int answerCounter = 0;
-                foreach (AbstractAnswer answer in formQuestion.Children.As<AbstractAnswer>())
+                foreach (AnswerItem answer in formQuestion.Children.As<AnswerItem>())
                 {
                     bool isCorrect = false;
 
