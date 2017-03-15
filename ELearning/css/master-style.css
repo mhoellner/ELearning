@@ -1,5 +1,6 @@
 ﻿.wrapper {
     border-top: 4px solid #D92425;
+    word-wrap: break-word;
 }
 
 .align-right {

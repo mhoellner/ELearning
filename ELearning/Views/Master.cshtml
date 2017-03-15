@@ -32,13 +32,15 @@
 <body id="" class="wrapper">
     @Html.Partial("~/Views/Partials/MainNavigation.cshtml")
     @Html.Partial("~/Views/Partials/Breadcrumb.cshtml", new BreadcrumbProvider(viewModel.Id).BreadcrumbItems)
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
-            </div>
-            @RenderBody()
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
         </div>
+        <div class="col-md-6" id="bodyUnlogged"><p>Sie müssen sich einloggen, um Inhalte zu sehen.</p></div>
+        @RenderBody()
     </div>
+</div>
+    <script src="~/js/Login.js"></script>
 </body>
 </html>

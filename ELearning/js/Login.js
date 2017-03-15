@@ -12,12 +12,13 @@ function login() {
             if (username != "Username or password is wrong.") {
 
                 //Wenn Login erfolgreich war
-                document.cookie = 'elearningName=' + username;
+              document.cookie = 'elearningName=' + username + '; Path=/;';
                 document.getElementById('username').value = "";
                 document.getElementById('password').value = "";
                 LoginAktualisieren();
             } else 
             {
+
                 //Name und/oderPasswort war falsch
                 document.getElementById('password').value = "";
                 alert("Ihr Benutzername oder Ihr Passwort ist nicht gültig. Versuchen sie es erneut.");
@@ -46,19 +47,22 @@ function getCookie(cname) {
 }
 
 function LoginAktualisieren() {
-    
-    if (document.cookie != "") {
-        var username = getCookie("elearningName");
+  var username = getCookie("elearningName");
+  if (username != "") {
         var logged = document.getElementById('logged');
         logged.style.display = 'block';
+        document.getElementById('bodyLogged').style.display = 'block';
+        document.getElementById('bodyUnlogged').style.display = 'none';
         document.getElementById('nameLogged').innerText = username;
 
         var unlogged = document.getElementById('unlogged');
         unlogged.style.display = "none";
 
-    } else {
+  } else {
         var logged = document.getElementById('logged');
         logged.style.display = 'none';
+        document.getElementById('bodyLogged').style.display = 'none';
+        document.getElementById('bodyUnlogged').style.display = 'block';
         document.getElementById('nameLogged').innerText = "";
 
         var unlogged = document.getElementById('unlogged');
@@ -66,10 +70,13 @@ function LoginAktualisieren() {
     }
 }
 
+
 function Logout() {
-    document.cookie = 'elearningName=; max-age=0;"';
+  document.cookie ='elearningName=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     var logged = document.getElementById('logged');
     logged.style.display = 'none';
+  document.getElementById('bodyLogged').style.display = 'none';
+  document.getElementById('bodyUnlogged').style.display = 'block';
     document.getElementById('nameLogged').innerText = "";
 
     var unlogged = document.getElementById('unlogged');
