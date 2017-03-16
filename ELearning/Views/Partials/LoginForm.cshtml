@@ -2,6 +2,8 @@
 
 @* Renders the login form on the upper right *@
 <div class="login-form">
+
+    <!--Bereich der Angezeigt wird, wenn ein Nutzer nicht eingeloggt ist-->
     <form class="" action="javascript:login()" id="unlogged">
         <div id="login-form">
             <div>
@@ -23,6 +25,8 @@
             </div>
         </div>
     </form>
+
+    <!--Bereich der Angezeigt wird, wenn ein Nutzer eingeloggt ist-->
     <div id="logged" class="user-loggedIn align-right" style="">
         <span id="nameLogged"></span>
             <button class="btn btn-secondary background-red" type="button" onclick="Logout();"> <span class="fa fa-sign-out"></span></button>

@@ -37,7 +37,10 @@
         <div class="col-md-3">
             @Html.Partial("~/Views/Partials/LeftNavigation.cshtml")
         </div>
+        <!--Wird angezeigt wenn der Nutzer nicht eingeloggt ist-->
         <div class="col-md-6" id="bodyUnlogged"><p>Sie müssen sich einloggen, um Inhalte zu sehen.</p></div>
+
+
         @RenderBody()
     </div>
 </div>
